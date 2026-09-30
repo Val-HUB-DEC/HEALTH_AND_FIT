@@ -7,75 +7,122 @@
 
     <title>Health & FIT</title>
 
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- CSS personnalisé -->
     <link rel="stylesheet" href="css/style.css">
 </head>
 
-<body>
+
+<body class="bg-light">
 
     <!-- En-tête de l'application -->
-    <header>
-        <h1>Health & FIT</h1>
+    <header class="bg-primary text-white text-center py-3 shadow-sm">
+        <h1 class="h3 mb-0">Health & FIT</h1>
     </header>
 
 
     <!-- Contenu principal -->
-    <main>
+    <main class="container py-4">
 
-        <section>
-            <h2>Bonjour, Valentin 👋</h2>
+        <!-- Bienvenue -->
+        <section class="card shadow-sm border-0 mb-4">
+            <div class="card-body">
+                <h2 class="h4">Bonjour, Valentin 👋</h2>
 
-            <p>Bienvenue dans votre espace personnel.</p>
+                <p class="text-muted mb-0">
+                    Bienvenue dans votre espace personnel.
+                </p>
+            </div>
         </section>
 
 
+        <!-- Aujourd'hui -->
         <section>
-            <h2>Aujourd'hui</h2>
 
-            <div>
-                <h3>Poids</h3>
-                <p>-- kg</p>
+            <h2 class="h4 mb-3">Aujourd'hui</h2>
+
+            <div class="row g-3">
+
+                <!-- Poids -->
+                <div class="col-12 col-md-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                            <h3 class="h6 text-muted">Poids</h3>
+                            <p class="display-6 mb-0">-- kg</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Calories -->
+                <div class="col-12 col-md-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                            <h3 class="h6 text-muted">Calories</h3>
+                            <p class="display-6 mb-0">-- kcal</p>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- Activité -->
+                <div class="col-12 col-md-4">
+                    <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                            <h3 class="h6 text-muted">Activité</h3>
+                            <p class="display-6 mb-0">-- pas</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div>
-                <h3>Calories</h3>
-                <p>-- kcal</p>
-            </div>
-
-            <div>
-                <h3>Activité</h3>
-                <p>-- pas</p>
-            </div>
         </section>
 
     </main>
 
 
     <!-- Navigation -->
-    <nav>
+    <nav class="navbar fixed-bottom bg-white border-top shadow-sm">
 
-    <button onclick="window.location.href='index.html'">
-        Accueil
-    </button>
+        <div class="container-fluid justify-content-around">
 
-    <button onclick="window.location.href='alimentation.html'">
-        Alimentation
-    </button>
+            <button class="btn btn-primary"
+                    onclick="window.location.href='index.html'">
+                Accueil
+            </button>
 
-    <button onclick="window.location.href='activite.html'">
-        Activité
-    </button>
+            <button class="btn btn-outline-primary"
+                    onclick="window.location.href='alimentation.html'">
+                Alimentation
+            </button>
 
-    <button onclick="window.location.href='poids.html'">
-        Poids
-    </button>
+            <button class="btn btn-outline-primary"
+                    onclick="window.location.href='activite.html'">
+                Activité
+            </button>
 
-    <button onclick="window.location.href='parametres.html'">
-        Paramètres
-    </button>
+            <button class="btn btn-outline-primary"
+                    onclick="window.location.href='poids.html'">
+                Poids
+            </button>
 
-</nav>
+            <button class="btn btn-outline-primary"
+                    onclick="window.location.href='parametres.html'">
+                Paramètres
+            </button>
+
+        </div>
+
+    </nav>
 
 
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript personnalisé -->
     <script src="js/app.js"></script>
 
 </body>

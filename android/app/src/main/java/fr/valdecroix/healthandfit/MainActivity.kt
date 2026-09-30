@@ -92,16 +92,15 @@ class MainActivity : ComponentActivity() {
                     "Vérification de la version"
                 )
 
-                // ------------------------------------------
-                // 1. Lire les versions
-                // ------------------------------------------
-
-                val versionGitHub = lireVersionGitHub()
-
-                Log.d(
-                    "HEALTH_FIT",
-                    "Version GitHub : $versionGitHub"
+                val dossierWeb = File(
+                    filesDir,
+                    "web"
                 )
+
+
+                // ------------------------------------------
+                // 1. Vérifier si une version locale existe
+                // ------------------------------------------
 
                 val versionLocale = lireVersionLocale()
 
@@ -111,119 +110,125 @@ class MainActivity : ComponentActivity() {
                 )
 
 
-                // ------------------------------------------
-                // 2. Dossier local du site
-                // ------------------------------------------
+                try {
 
-                val dossierWeb = File(
-                    filesDir,
-                    "web"
-                )
+                    // ------------------------------------------
+                    // 2. Lire la version GitHub
+                    // ------------------------------------------
 
-
-                // ------------------------------------------
-                // 3. Vérifier si une mise à jour est nécessaire
-                // ------------------------------------------
-
-                if (
-                    versionLocale == versionGitHub &&
-                    dossierWeb.exists()
-                ) {
+                    val versionGitHub = lireVersionGitHub()
 
                     Log.d(
                         "HEALTH_FIT",
-                        "Version identique → aucune mise à jour"
-                    )
-
-                } else {
-
-                    Log.d(
-                        "HEALTH_FIT",
-                        "Mise à jour nécessaire"
+                        "Version GitHub : $versionGitHub"
                     )
 
 
                     // ------------------------------------------
-                    // 4. Récupérer la liste des fichiers GitHub
+                    // 3. Comparer les versions
                     // ------------------------------------------
 
-                    val url = URL(
-                        "https://api.github.com/repos/Val-HUB-DEC/HEALTH_AND_FIT/git/trees/main?recursive=1"
-                    )
+                    if (
+                        versionLocale == versionGitHub &&
+                        dossierWeb.exists()
+                    ) {
 
-                    val json = url.readText()
+                        Log.d(
+                            "HEALTH_FIT",
+                            "Version identique → aucune mise à jour"
+                        )
 
-                    val objetJson = JSONObject(json)
+                    } else {
 
-                    val arbre = objetJson.getJSONArray("tree")
-
-
-                    // ------------------------------------------
-                    // 5. Supprimer l'ancien site
-                    // ------------------------------------------
-
-                    if (dossierWeb.exists()) {
-
-                        dossierWeb.deleteRecursively()
-
-                    }
-
-                    dossierWeb.mkdirs()
+                        Log.d(
+                            "HEALTH_FIT",
+                            "Mise à jour nécessaire"
+                        )
 
 
-                    // ------------------------------------------
-                    // 6. Télécharger tout le dossier web
-                    // ------------------------------------------
+                        // ------------------------------------------
+                        // 4. Récupérer la liste GitHub
+                        // ------------------------------------------
 
-                    for (i in 0 until arbre.length()) {
+                        val url = URL(
+                            "https://api.github.com/repos/Val-HUB-DEC/HEALTH_AND_FIT/git/trees/main?recursive=1"
+                        )
 
-                        val fichier =
-                            arbre.getJSONObject(i)
+                        val json = url.readText()
 
-                        val chemin =
-                            fichier.getString("path")
+                        val objetJson = JSONObject(json)
 
-                        val type =
-                            fichier.getString("type")
-
-
-                        if (
-                            chemin.startsWith("web/") &&
-                            type == "blob"
-                        ) {
-
-                            val cheminLocal =
-                                chemin.removePrefix("web/")
+                        val arbre = objetJson.getJSONArray("tree")
 
 
-                            val fichierLocal =
-                                File(
-                                    dossierWeb,
-                                    cheminLocal
+                        // ------------------------------------------
+                        // 5. Supprimer l'ancien site
+                        // ------------------------------------------
+
+                        if (dossierWeb.exists()) {
+
+                            dossierWeb.deleteRecursively()
+
+                        }
+
+                        dossierWeb.mkdirs()
+
+
+                        // ------------------------------------------
+                        // 6. Télécharger tout le site
+                        // ------------------------------------------
+
+                        for (i in 0 until arbre.length()) {
+
+                            val fichier =
+                                arbre.getJSONObject(i)
+
+                            val chemin =
+                                fichier.getString("path")
+
+                            val type =
+                                fichier.getString("type")
+
+
+                            if (
+                                chemin.startsWith("web/") &&
+                                type == "blob"
+                            ) {
+
+                                val cheminLocal =
+                                    chemin.removePrefix("web/")
+
+
+                                val fichierLocal =
+                                    File(
+                                        dossierWeb,
+                                        cheminLocal
+                                    )
+
+
+                                fichierLocal.parentFile?.mkdirs()
+
+
+                                val urlFichier = URL(
+                                    "https://github.com/Val-HUB-DEC/HEALTH_AND_FIT/raw/refs/heads/main/$chemin"
                                 )
 
 
-                            fichierLocal.parentFile?.mkdirs()
+                                Log.d(
+                                    "HEALTH_FIT",
+                                    "Téléchargement : $chemin"
+                                )
 
 
-                            val urlFichier = URL(
-                                "https://github.com/Val-HUB-DEC/HEALTH_AND_FIT/raw/refs/heads/main/$chemin"
-                            )
+                                urlFichier.openStream().use { input ->
 
+                                    FileOutputStream(
+                                        fichierLocal
+                                    ).use { output ->
 
-                            Log.d(
-                                "HEALTH_FIT",
-                                "Téléchargement : $chemin"
-                            )
+                                        input.copyTo(output)
 
-
-                            urlFichier.openStream().use { input ->
-
-                                FileOutputStream(
-                                    fichierLocal
-                                ).use { output ->
-
-                                    input.copyTo(output)
+                                    }
 
                                 }
 
@@ -231,30 +236,54 @@ class MainActivity : ComponentActivity() {
 
                         }
 
+
+                        Log.d(
+                            "HEALTH_FIT",
+                            "Mise à jour terminée"
+                        )
+
                     }
 
 
-                    Log.d(
+                } catch (e: Exception) {
+
+                    // ------------------------------------------
+                    // GitHub inaccessible
+                    // ------------------------------------------
+
+                    Log.w(
                         "HEALTH_FIT",
-                        "Mise à jour terminée"
+                        "GitHub inaccessible → utilisation de la version locale",
+                        e
                     )
 
                 }
 
 
                 // ------------------------------------------
-                // 7. Ouvrir le site
+                // 7. Ouvrir le site local
                 // ------------------------------------------
 
-                runOnUiThread {
+                if (dossierWeb.exists()) {
 
-                    Log.d(
+                    runOnUiThread {
+
+                        Log.d(
+                            "HEALTH_FIT",
+                            "Ouverture du site local"
+                        )
+
+                        webView.loadUrl(
+                            "https://appassets.androidplatform.net/web/index.html"
+                        )
+
+                    }
+
+                } else {
+
+                    Log.e(
                         "HEALTH_FIT",
-                        "Ouverture du site"
-                    )
-
-                    webView.loadUrl(
-                        "https://appassets.androidplatform.net/web/index.html"
+                        "Aucune version locale disponible"
                     )
 
                 }
@@ -264,7 +293,7 @@ class MainActivity : ComponentActivity() {
 
                 Log.e(
                     "HEALTH_FIT",
-                    "Erreur pendant la mise à jour",
+                    "Erreur application",
                     e
                 )
 
