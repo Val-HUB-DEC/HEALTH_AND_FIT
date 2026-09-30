@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Health & FIT - Poids</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+
+<body>
+
+    <!-- En-tête -->
+    <header class="px-4 pt-4 pb-3">
+
+        <p class="small mb-1">
+            Health & FIT
+        </p>
+
+        <h1 class="fw-bold mb-0">
+            Poids
+        </h1>
+
+    </header>
+
+
+    <!-- Contenu principal -->
+    <main class="container-fluid px-4 pb-5">
+
+
+        <!-- Poids actuel -->
+        <section class="mb-5">
+
+            <p class="small mb-1">
+                POIDS ACTUEL
+            </p>
+
+            <div class="d-flex align-items-end gap-2">
+
+                <h2 class="display-4 fw-bold mb-0">
+                    --
+                </h2>
+
+                <span class="fs-5 mb-2">
+                    kg
+                </span>
+
+            </div>
+
+            <p class="small mt-2 mb-0">
+                Dernière pesée : --
+            </p>
+
+        </section>
+
+
+        <!-- Objectif -->
+        <section class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-end mb-2">
+
+                <div>
+
+                    <p class="small mb-1">
+                        OBJECTIF
+                    </p>
+
+                    <h2 class="h5 fw-bold mb-0">
+                        -- kg
+                    </h2>
+
+                </div>
+
+                <span class="small">
+                    -- kg à perdre
+                </span>
+
+            </div>
+
+
+            <div class="progress"
+                 style="height: 5px;">
+
+                <div
+                    class="progress-bar"
+                    style="width: 0%;">
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Évolution -->
+        <section class="mb-5">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h2 class="h5 fw-bold mb-0">
+                    Mon évolution
+                </h2>
+
+                <span class="small">
+                    Depuis le début
+                </span>
+
+            </div>
+
+
+            <!-- Graphique -->
+            <div
+                id="graphique-poids"
+                class="w-100"
+                style="height: 220px;">
+
+                <p class="small mb-0">
+                    Le graphique apparaîtra ici.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- Enregistrer un poids -->
+        <section class="mb-5">
+
+            <h2 class="h5 fw-bold mb-4">
+                Nouvelle pesée
+            </h2>
+
+
+            <!-- Poids -->
+            <div class="mb-3">
+
+                <label
+                    for="nouveau-poids"
+                    class="form-label small">
+
+                    Poids (kg)
+
+                </label>
+
+                <input
+                    type="number"
+                    id="nouveau-poids"
+                    class="form-control"
+                    placeholder="Ex : 105.5"
+                    step="0.1">
+
+            </div>
+
+
+            <!-- Date -->
+            <div class="mb-4">
+
+                <label
+                    for="date-poids"
+                    class="form-label small">
+
+                    Date
+
+                </label>
+
+                <input
+                    type="date"
+                    id="date-poids"
+                    class="form-control">
+
+            </div>
+
+
+            <!-- Bouton -->
+            <button
+                id="enregistrer-poids"
+                class="btn btn-primary w-100 py-2">
+
+                Enregistrer le poids
+
+            </button>
+
+        </section>
+
+
+        <!-- Historique -->
+        <section>
+
+            <h2 class="h5 fw-bold mb-3">
+                Historique
+            </h2>
+
+            <div id="historique-poids">
+
+                <p class="small mb-0">
+                    Aucune pesée enregistrée.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Navigation basse -->
+    <nav class="navbar fixed-bottom">
+
+        <div class="container-fluid justify-content-around py-2">
+
+
+            <!-- Accueil -->
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='index.html'">
+
+                <span>⌂</span>
+
+                <small>
+                    Accueil
+                </small>
+
+            </button>
+
+
+            <!-- Alimentation -->
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='alimentation.html'">
+
+                <span>🍽</span>
+
+                <small>
+                    Repas
+                </small>
+
+            </button>
+
+
+            <!-- Activité -->
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='activite.html'">
+
+                <span>🏃</span>
+
+                <small>
+                    Activité
+                </small>
+
+            </button>
+
+
+            <!-- Poids -->
+            <button
+                class="btn active d-flex flex-column align-items-center"
+                onclick="window.location.href='poids.html'">
+
+                <span>⚖</span>
+
+                <small>
+                    Poids
+                </small>
+
+            </button>
+
+
+            <!-- Paramètres -->
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='parametres.html'">
+
+                <span>⚙</span>
+
+                <small>
+                    Réglages
+                </small>
+
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Bootstrap -->
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <!-- JavaScript personnalisé -->
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>

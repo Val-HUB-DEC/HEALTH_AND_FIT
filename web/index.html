@@ -15,67 +15,240 @@
 </head>
 
 
-<body class="bg-light">
+<body>
 
-    <!-- En-tête de l'application -->
-    <header class="bg-primary text-white text-center py-3 shadow-sm">
-        <h1 class="h3 mb-0">Health & FIT</h1>
+    <!-- En-tête -->
+    <header class="px-4 pt-4 pb-3">
+
+        <p class="small mb-1">
+            Bonjour Valentin 👋
+        </p>
+
+        <h1 class="fw-bold mb-0">
+            Health <span>&</span> FIT
+        </h1>
+
     </header>
 
 
-    <!-- Contenu principal -->
-    <main class="container py-4">
+    <!-- Contenu -->
+    <main class="container-fluid px-4 pb-5">
 
-        <!-- Bienvenue -->
-        <section class="card shadow-sm border-0 mb-4">
-            <div class="card-body">
-                <h2 class="h4">Bonjour, Valentin 👋</h2>
 
-                <p class="text-muted mb-0">
-                    Bienvenue dans votre espace personnel.
+        <!-- Objectif -->
+        <section class="mb-5">
+
+            <p class="small mb-1">
+                OBJECTIF DU JOUR
+            </p>
+
+            <div class="d-flex align-items-end gap-2">
+
+                <h2 class="display-5 fw-bold mb-0">
+                    0%
+                </h2>
+
+                <p class="small mb-2">
+                    de l'objectif atteint
                 </p>
+
             </div>
+
+            <div class="progress mt-3"
+                 style="height: 5px;">
+
+                <div class="progress-bar"
+                     style="width: 0%;">
+                </div>
+
+            </div>
+
         </section>
 
 
         <!-- Aujourd'hui -->
-        <section>
+        <section class="mb-5">
 
-            <h2 class="h4 mb-3">Aujourd'hui</h2>
+            <div class="d-flex justify-content-between align-items-center mb-4">
 
-            <div class="row g-3">
+                <h2 class="h5 fw-bold mb-0">
+                    Aujourd'hui
+                </h2>
 
-                <!-- Poids -->
-                <div class="col-12 col-md-4">
-                    <div class="card shadow-sm border-0 h-100">
-                        <div class="card-body text-center">
-                            <h3 class="h6 text-muted">Poids</h3>
-                            <p class="display-6 mb-0">-- kg</p>
-                        </div>
-                    </div>
-                </div>
+                <span class="small">
+                    28 sept.
+                </span>
+
+            </div>
+
+
+            <!-- Statistiques -->
+            <div class="row text-center">
 
 
                 <!-- Calories -->
-                <div class="col-12 col-md-4">
-                    <div class="card shadow-sm border-0 h-100">
-                        <div class="card-body text-center">
-                            <h3 class="h6 text-muted">Calories</h3>
-                            <p class="display-6 mb-0">-- kcal</p>
-                        </div>
+                <div class="col-4">
+
+                    <div class="fs-3 mb-1">
+                        🔥
                     </div>
+
+                    <div class="fs-5 fw-bold">
+                        --
+                    </div>
+
+                    <small>
+                        kcal
+                    </small>
+
+                </div>
+
+
+                <!-- Poids -->
+                <div class="col-4">
+
+                    <div class="fs-3 mb-1">
+                        ⚖️
+                    </div>
+
+                    <div class="fs-5 fw-bold">
+                        --
+                    </div>
+
+                    <small>
+                        kg
+                    </small>
+
                 </div>
 
 
                 <!-- Activité -->
-                <div class="col-12 col-md-4">
-                    <div class="card shadow-sm border-0 h-100">
-                        <div class="card-body text-center">
-                            <h3 class="h6 text-muted">Activité</h3>
-                            <p class="display-6 mb-0">-- pas</p>
-                        </div>
+                <div class="col-4">
+
+                    <div class="fs-3 mb-1">
+                        🚶
                     </div>
+
+                    <div class="fs-5 fw-bold">
+                        --
+                    </div>
+
+                    <small>
+                        pas
+                    </small>
+
                 </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Accès rapides -->
+        <section>
+
+            <h2 class="h5 fw-bold mb-3">
+                Accès rapides
+            </h2>
+
+
+            <div class="list-group">
+
+
+                <!-- Alimentation -->
+                <button
+                    class="list-group-item list-group-item-action border-0 py-3"
+                    onclick="window.location.href='alimentation.html'">
+
+                    <div class="d-flex align-items-center">
+
+                        <span class="fs-4 me-3">
+                            🍽️
+                        </span>
+
+                        <div class="text-start">
+
+                            <div class="fw-semibold">
+                                Alimentation
+                            </div>
+
+                            <small>
+                                Mes repas et mes calories
+                            </small>
+
+                        </div>
+
+                        <span class="ms-auto">
+                            ›
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+                <!-- Activité -->
+                <button
+                    class="list-group-item list-group-item-action border-0 py-3"
+                    onclick="window.location.href='activite.html'">
+
+                    <div class="d-flex align-items-center">
+
+                        <span class="fs-4 me-3">
+                            🏃
+                        </span>
+
+                        <div class="text-start">
+
+                            <div class="fw-semibold">
+                                Activité
+                            </div>
+
+                            <small>
+                                Mes activités et mes pas
+                            </small>
+
+                        </div>
+
+                        <span class="ms-auto">
+                            ›
+                        </span>
+
+                    </div>
+
+                </button>
+
+
+                <!-- Progression -->
+                <button
+                    class="list-group-item list-group-item-action border-0 py-3"
+                    onclick="window.location.href='poids.html'">
+
+                    <div class="d-flex align-items-center">
+
+                        <span class="fs-4 me-3">
+                            📊
+                        </span>
+
+                        <div class="text-start">
+
+                            <div class="fw-semibold">
+                                Progression
+                            </div>
+
+                            <small>
+                                Mon évolution
+                            </small>
+
+                        </div>
+
+                        <span class="ms-auto">
+                            ›
+                        </span>
+
+                    </div>
+
+                </button>
 
             </div>
 
@@ -85,33 +258,58 @@
 
 
     <!-- Navigation -->
-    <nav class="navbar fixed-bottom bg-white border-top shadow-sm">
+    <nav class="navbar fixed-bottom border-top">
 
-        <div class="container-fluid justify-content-around">
+        <div class="container-fluid justify-content-around py-2">
 
-            <button class="btn btn-primary"
-                    onclick="window.location.href='index.html'">
-                Accueil
+
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='index.html'">
+
+                <span>⌂</span>
+                <small>Accueil</small>
+
             </button>
 
-            <button class="btn btn-outline-primary"
-                    onclick="window.location.href='alimentation.html'">
-                Alimentation
+
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='alimentation.html'">
+
+                <span>🍽</span>
+                <small>Repas</small>
+
             </button>
 
-            <button class="btn btn-outline-primary"
-                    onclick="window.location.href='activite.html'">
-                Activité
+
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='activite.html'">
+
+                <span>🏃</span>
+                <small>Activité</small>
+
             </button>
 
-            <button class="btn btn-outline-primary"
-                    onclick="window.location.href='poids.html'">
-                Poids
+
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='poids.html'">
+
+                <span>⚖</span>
+                <small>Poids</small>
+
             </button>
 
-            <button class="btn btn-outline-primary"
-                    onclick="window.location.href='parametres.html'">
-                Paramètres
+
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='parametres.html'">
+
+                <span>⚙</span>
+                <small>Réglages</small>
+
             </button>
 
         </div>
