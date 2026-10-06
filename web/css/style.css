@@ -1,5 +1,5 @@
 /* =========================
-   VARIABLES
+   VARIABLES HEALTH & FIT
    ========================= */
 
 :root {
@@ -38,37 +38,277 @@ body {
     color: var(--texte);
 }
 
+body {
+    padding-bottom: 85px;
+}
+
 
 /* =========================
-   EN-TÊTE
+   BANDEAU SUPÉRIEUR
    ========================= */
 
 header {
     background-color: var(--fond);
-    color: var(--texte);
+
+    padding: 22px 0 18px;
+
+    border-bottom: 1px solid var(--bordure);
 }
 
 header h1 {
+    margin: 0;
+
     color: var(--texte);
+
+    font-size: 1.6rem;
+    font-weight: 700;
 }
 
 header h1 span {
     color: var(--principal);
 }
 
-
-/* =========================
-   TEXTES
-   ========================= */
-
-small,
-.small {
-    color: var(--texte-secondaire);
+header p {
+    margin-top: 5px;
 }
 
 
 /* =========================
-   OBJECTIF
+   TITRES
+   ========================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--texte);
+}
+
+h2 {
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.text-secondary,
+small,
+.small {
+    color: var(--texte-secondaire) !important;
+}
+
+
+/* =========================
+   CONTENU
+   ========================= */
+
+main.container {
+    padding-top: 20px;
+}
+
+
+/* =========================
+   SECTIONS
+   ========================= */
+
+section {
+    margin-bottom: 20px;
+}
+
+
+/* =========================
+   CARTES
+   ========================= */
+
+.card {
+    background-color: var(--carte) !important;
+
+    color: var(--texte) !important;
+
+    border: 1px solid var(--bordure) !important;
+
+    border-radius: 14px !important;
+}
+
+
+/* =========================
+   CHAMPS DE FORMULAIRE
+   ========================= */
+
+.form-label {
+    color: var(--texte);
+
+    font-size: 0.9rem;
+
+    margin-bottom: 6px;
+}
+
+
+/* Champs compacts */
+
+.form-control,
+.form-select {
+    min-height: 38px;
+
+    padding: 7px 10px;
+
+    background-color: var(--carte-secondaire) !important;
+
+    color: var(--texte) !important;
+
+    border: 1px solid var(--bordure) !important;
+
+    border-radius: 9px;
+}
+
+.form-control::placeholder {
+    color: var(--texte-secondaire);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--carte-secondaire) !important;
+
+    color: var(--texte) !important;
+
+    border-color: var(--principal) !important;
+
+    box-shadow: 0 0 0 2px rgba(45, 212, 191, 0.15);
+}
+
+
+/* Version Bootstrap small */
+
+.form-control-sm,
+.form-select-sm {
+    min-height: 34px;
+
+    padding: 5px 9px;
+
+    font-size: 0.9rem;
+}
+
+
+/* =========================
+   INPUT GROUP
+   ========================= */
+
+.input-group-text {
+    background-color: var(--carte-secondaire) !important;
+
+    color: var(--texte-secondaire) !important;
+
+    border: 1px solid var(--bordure) !important;
+}
+
+
+/* =========================
+   BOUTONS
+   ========================= */
+
+.btn {
+    border-radius: 9px;
+
+    font-weight: 500;
+}
+
+
+/* Bouton principal */
+
+.btn-primary {
+    background-color: var(--principal) !important;
+
+    border-color: var(--principal) !important;
+
+    color: var(--fond) !important;
+}
+
+.btn-primary:hover {
+    background-color: #26BBA8 !important;
+
+    border-color: #26BBA8 !important;
+}
+
+
+/* Bouton secondaire */
+
+.btn-outline-primary {
+    color: var(--principal) !important;
+
+    border-color: var(--principal) !important;
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--principal) !important;
+
+    color: var(--fond) !important;
+}
+
+
+/* =========================
+   LISTES
+   ========================= */
+
+.list-group-item {
+    background-color: var(--carte) !important;
+
+    color: var(--texte) !important;
+
+    border: 1px solid var(--bordure) !important;
+
+    border-radius: 10px !important;
+
+    margin-bottom: 7px;
+
+    padding: 11px 13px;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+.list-group-item:hover {
+    background-color: var(--carte-secondaire) !important;
+
+    color: var(--texte) !important;
+}
+
+.list-group-item:active {
+    transform: scale(0.98);
+}
+
+.list-group-item small {
+    color: var(--texte-secondaire) !important;
+}
+
+
+/* =========================
+   INFORMATIONS NUTRITION
+   ========================= */
+
+.info-nutrition {
+    color: var(--texte) !important;
+}
+
+.info-nutrition small {
+    display: block;
+
+    color: var(--texte-secondaire) !important;
+
+    margin-bottom: 3px;
+}
+
+.info-nutrition .valeur {
+    color: var(--principal) !important;
+
+    font-size: 1.1rem;
+
+    font-weight: 700;
+}
+
+
+/* =========================
+   PROGRESSION
    ========================= */
 
 .progress {
@@ -89,75 +329,97 @@ small,
 
 
 /* =========================
-   STATISTIQUES
+   RADIO / CHECKBOX
    ========================= */
 
-section .row {
+.form-check-label {
     color: var(--texte);
 }
 
-
-/* =========================
-   ACCÈS RAPIDES
-   ========================= */
-
-.list-group-item {
-    background-color: var(--carte);
-
-    color: var(--texte);
-
-    border-radius: 12px !important;
-
-    margin-bottom: 8px;
-
-    transition: background-color 0.2s ease,
-                transform 0.1s ease;
-}
-
-.list-group-item:hover {
+.form-check-input {
     background-color: var(--carte-secondaire);
 
-    color: var(--texte);
+    border-color: var(--bordure);
 }
 
-.list-group-item:active {
-    transform: scale(0.98);
-}
+.form-check-input:checked {
+    background-color: var(--principal);
 
-.list-group-item small {
-    color: var(--texte-secondaire);
+    border-color: var(--principal);
 }
 
 
 /* =========================
-   NAVIGATION
+   TABLEAUX
+   ========================= */
+
+.table {
+    color: var(--texte) !important;
+}
+
+.table th {
+    color: var(--texte) !important;
+}
+
+.table td {
+    color: var(--texte-secondaire) !important;
+}
+
+
+/* =========================
+   NAVIGATION BASSE
    ========================= */
 
 nav {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
     background-color: var(--carte) !important;
 
     border-top: 1px solid var(--bordure) !important;
+
+    z-index: 1000;
+}
+
+nav .container {
+    max-width: 600px;
 }
 
 nav button {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 2px;
+
+    padding: 5px 8px;
+
     color: var(--texte-secondaire) !important;
 
     border: none;
 
     background: transparent;
+
+    font-size: 0.72rem;
 }
 
 nav button:hover {
     color: var(--principal) !important;
 }
 
-nav button:first-child {
+nav button.active {
     color: var(--principal) !important;
 }
 
 
 /* =========================
-   BOOTSTRAP
+   COULEURS BOOTSTRAP
    ========================= */
 
 .text-warning {
@@ -166,4 +428,31 @@ nav button:first-child {
 
 .bg-warning {
     background-color: var(--principal) !important;
+}
+
+.border-secondary {
+    border-color: var(--bordure) !important;
+}
+
+
+/* =========================
+   SCROLLBAR
+   ========================= */
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--fond);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--carte-secondaire);
+
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--principal);
 }

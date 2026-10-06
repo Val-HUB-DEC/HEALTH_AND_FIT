@@ -131,43 +131,59 @@
     </main>
 
 
-    <!-- =========================
-         NAVIGATION
-    ========================== -->
+    <!-- Navigation -->
+    <nav class="navbar fixed-bottom border-top">
 
-    <nav class="p-2">
+        <div class="container-fluid justify-content-around py-2">
 
-        <div class="container d-flex justify-content-around">
 
             <button
-                onclick="location.href='index.html'"
-            >
-                Accueil
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='index.html'">
+
+                <span>⌂</span>
+                <small>Accueil</small>
+
             </button>
 
-            <button
-                class="active"
-                onclick="location.href='alimentation.html'"
-            >
-                Alimentation
-            </button>
 
             <button
-                onclick="location.href='activite.html'"
-            >
-                Activité
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='alimentation.html'">
+
+                <span>🍽</span>
+                <small>Repas</small>
+
             </button>
 
-            <button
-                onclick="location.href='poids.html'"
-            >
-                Poids
-            </button>
 
             <button
-                onclick="location.href='parametres.html'"
-            >
-                Paramètres
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='activite.html'">
+
+                <span>🏃</span>
+                <small>Activité</small>
+
+            </button>
+
+
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='poids.html'">
+
+                <span>⚖</span>
+                <small>Poids</small>
+
+            </button>
+
+
+            <button
+                class="btn d-flex flex-column align-items-center"
+                onclick="window.location.href='parametres.html'">
+
+                <span>⚙</span>
+                <small>Réglages</small>
+
             </button>
 
         </div>
