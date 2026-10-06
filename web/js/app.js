@@ -414,6 +414,8 @@ function selectionnerAliment(id) {
         JSON.stringify(aliment)
     );
 
+    alert("Ouverture de la page quantité");
+    
     window.location.href =
         "quantite-aliment.html";
 }
