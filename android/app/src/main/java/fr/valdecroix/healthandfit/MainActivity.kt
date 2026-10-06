@@ -19,6 +19,11 @@ class MainActivity : ComponentActivity() {
 
         val webView = WebView(this)
 
+        webView.addJavascriptInterface(
+            AndroidBridge(this),
+            "Android"
+        )
+
         webView.settings.javaScriptEnabled = true
 
         val assetLoader = WebViewAssetLoader.Builder()
@@ -43,8 +48,10 @@ class MainActivity : ComponentActivity() {
         }
 
         setContentView(webView)
-
+        DatabaseSeeder.insererAlimentsDeBase(this)
         telechargerSite(webView)
+
+
     }
 
 

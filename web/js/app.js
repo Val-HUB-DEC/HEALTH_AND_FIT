@@ -236,6 +236,16 @@ function chargerJournee() {
 
 }
 
+function testerBaseDeDonnees() {
+
+    const nombreAliments = Android.compterAliments();
+
+    alert(
+        "Nombre d'aliments dans la base : " +
+        nombreAliments
+    );
+}
+
 chargerJournee();
 
 afficherRepas();
