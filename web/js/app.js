@@ -416,12 +416,26 @@ function selectionnerAliment(id) {
         return;
     }
 
-    localStorage.setItem(
-        "alimentSelectionne",
-        JSON.stringify(aliment)
-    );
+    try {
 
-    alert("Aliment sauvegardé");
+        localStorage.setItem(
+            "alimentSelectionne",
+            JSON.stringify(aliment)
+        );
+
+        alert("Aliment sauvegardé");
+
+    } catch (erreur) {
+
+        alert(
+            "Erreur localStorage : " +
+            erreur.message
+        );
+
+        return;
+    }
+
+    alert("Tentative ouverture page quantité");
 
     window.location.href =
         "quantite-aliment.html";
