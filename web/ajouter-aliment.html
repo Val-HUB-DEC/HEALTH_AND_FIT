@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ajouter un aliment</title>
+
+    <link
+        rel="stylesheet"
+        href="css/bootstrap.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         EN-TÊTE
+    ========================== -->
+
+    <header>
+
+        <div class="container">
+
+            <h1 class="mb-1">
+                Ajouter un <span>aliment</span>
+            </h1>
+
+            <p class="text-secondary mb-0">
+                Choisis l'aliment à ajouter
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <!-- =========================
+         RECHERCHE
+    ========================== -->
+
+    <main class="container">
+
+        <section>
+
+            <div class="card p-3">
+
+                <label
+                    for="recherche-aliment"
+                    class="form-label"
+                >
+                    Rechercher
+                </label>
+
+                <input
+                    type="text"
+                    id="recherche-aliment"
+                    class="form-control"
+                    placeholder="Ex : poulet, riz, tomate..."
+                >
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FILTRE CATÉGORIE
+        ========================== -->
+
+        <section>
+
+            <div class="card p-3">
+
+                <label
+                    for="filtre-categorie"
+                    class="form-label"
+                >
+                    Catégorie
+                </label>
+
+                <select
+                    id="filtre-categorie"
+                    class="form-select"
+                >
+
+                    <option value="">
+                        Toutes les catégories
+                    </option>
+
+                </select>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LISTE DES ALIMENTS
+        ========================== -->
+
+        <section>
+
+            <h2 class="mb-3">
+                Aliments
+            </h2>
+
+            <div id="liste-aliments">
+
+                <p class="text-secondary">
+                    Chargement des aliments...
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="p-2">
+
+        <div class="container d-flex justify-content-around">
+
+            <button
+                onclick="location.href='index.html'"
+            >
+                Accueil
+            </button>
+
+            <button
+                class="active"
+                onclick="location.href='alimentation.html'"
+            >
+                Alimentation
+            </button>
+
+            <button
+                onclick="location.href='activite.html'"
+            >
+                Activité
+            </button>
+
+            <button
+                onclick="location.href='poids.html'"
+            >
+                Poids
+            </button>
+
+            <button
+                onclick="location.href='parametres.html'"
+            >
+                Paramètres
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
