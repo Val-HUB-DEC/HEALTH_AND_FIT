@@ -253,6 +253,387 @@ function testerRechercheAliment() {
     alert(resultat);
 }
 
+let alimentsDisponibles = [];
+
+
+function chargerAliments() {
+
+    const resultat = Android.obtenirTousLesAliments();
+
+    alimentsDisponibles = JSON.parse(resultat);
+
+    afficherAliments(alimentsDisponibles);
+
+    chargerCategories();
+}
+
+
+function afficherAliments(aliments) {
+
+    const liste = document.getElementById("liste-aliments");
+
+    if (!liste) {
+        return;
+    }
+
+    liste.innerHTML = "";
+
+
+    if (aliments.length === 0) {
+
+        liste.innerHTML = `
+            <p class="text-secondary">
+                Aucun aliment trouvé.
+            </p>
+        `;
+
+        return;
+    }
+
+
+    aliments.forEach(aliment => {
+
+        const element = document.createElement("button");
+
+        element.type = "button";
+
+        element.className =
+            "list-group-item list-group-item-action d-flex justify-content-between align-items-center";
+
+
+        element.innerHTML = `
+
+            <span>
+                ${aliment.nom}
+            </span>
+
+            <span>
+                →
+            </span>
+
+        `;
+
+
+        element.onclick = function () {
+
+            selectionnerAliment(aliment.id);
+
+        };
+
+
+        liste.appendChild(element);
+
+    });
+}
+
+
+function chargerCategories() {
+
+    const select = document.getElementById("filtre-categorie");
+
+    if (!select) {
+        return;
+    }
+
+    const categories = [
+        ...new Set(
+            alimentsDisponibles.map(
+                aliment => aliment.categorie
+            )
+        )
+    ];
+
+    categories.sort();
+
+
+    categories.forEach(categorie => {
+
+        const option = document.createElement("option");
+
+        option.value = categorie;
+
+        option.textContent = categorie;
+
+        select.appendChild(option);
+
+    });
+}
+
+
+function filtrerAliments() {
+
+    const recherche =
+        document
+            .getElementById("recherche-aliment")
+            .value
+            .toLowerCase();
+
+    const categorie =
+        document
+            .getElementById("filtre-categorie")
+            .value;
+
+
+    const resultat =
+        alimentsDisponibles.filter(aliment => {
+
+            const correspondRecherche =
+                aliment.nom
+                    .toLowerCase()
+                    .includes(recherche);
+
+            const correspondCategorie =
+                categorie === "" ||
+                aliment.categorie === categorie;
+
+            return (
+                correspondRecherche &&
+                correspondCategorie
+            );
+
+        });
+
+
+    afficherAliments(resultat);
+}
+
+
+function selectionnerAliment(id) {
+
+    const aliment =
+        alimentsDisponibles.find(
+            aliment => aliment.id === id
+        );
+
+    if (!aliment) {
+        return;
+    }
+
+    localStorage.setItem(
+        "alimentSelectionne",
+        JSON.stringify(aliment)
+    );
+
+    window.location.href =
+        "quantite-aliment.html";
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        if (
+            document.getElementById(
+                "liste-aliments"
+            )
+        ) {
+
+            chargerAliments();
+
+
+            document
+                .getElementById(
+                    "recherche-aliment"
+                )
+                .addEventListener(
+                    "input",
+                    filtrerAliments
+                );
+
+
+            document
+                .getElementById(
+                    "filtre-categorie"
+                )
+                .addEventListener(
+                    "change",
+                    filtrerAliments
+                );
+
+        }
+
+    }
+);
+
+function chargerAlimentSelectionne() {
+
+    const donnees =
+        localStorage.getItem("alimentSelectionne");
+
+    if (!donnees) {
+
+        window.location.href =
+            "ajouter-aliment.html";
+
+        return;
+    }
+
+
+    const aliment =
+        JSON.parse(donnees);
+
+
+    document.getElementById(
+        "nom-aliment"
+    ).textContent = aliment.nom;
+
+
+    document.getElementById(
+        "categorie-aliment"
+    ).textContent = aliment.categorie;
+
+
+    document.getElementById(
+        "quantite-reference"
+    ).textContent =
+        aliment.quantite_reference;
+
+
+    document.getElementById(
+        "unite-reference"
+    ).textContent =
+        aliment.unite_reference;
+
+
+    document.getElementById(
+        "unite-quantite"
+    ).textContent =
+        aliment.unite_reference;
+
+
+    document.getElementById(
+        "kcal-aliment"
+    ).textContent =
+        aliment.kcal;
+
+
+    document.getElementById(
+        "proteines-aliment"
+    ).textContent =
+        aliment.proteines;
+
+
+    document.getElementById(
+        "glucides-aliment"
+    ).textContent =
+        aliment.glucides;
+
+
+    document.getElementById(
+        "lipides-aliment"
+    ).textContent =
+        aliment.lipides;
+
+
+    calculerQuantiteAliment();
+}
+
+function calculerQuantiteAliment() {
+
+    const donnees =
+        localStorage.getItem("alimentSelectionne");
+
+    if (!donnees) {
+        return;
+    }
+
+
+    const aliment =
+        JSON.parse(donnees);
+
+
+    const quantite =
+        parseFloat(
+            document.getElementById(
+                "quantite-aliment"
+            ).value
+        );
+
+
+    if (
+        isNaN(quantite) ||
+        quantite < 0
+    ) {
+        return;
+    }
+
+
+    const coefficient =
+        quantite /
+        aliment.quantite_reference;
+
+
+    const kcal =
+        aliment.kcal *
+        coefficient;
+
+
+    const proteines =
+        aliment.proteines *
+        coefficient;
+
+
+    const glucides =
+        aliment.glucides *
+        coefficient;
+
+
+    const lipides =
+        aliment.lipides *
+        coefficient;
+
+
+    document.getElementById(
+        "total-kcal"
+    ).textContent =
+        kcal.toFixed(1) + " kcal";
+
+
+    document.getElementById(
+        "total-proteines"
+    ).textContent =
+        proteines.toFixed(1) + " g";
+
+
+    document.getElementById(
+        "total-glucides"
+    ).textContent =
+        glucides.toFixed(1) + " g";
+
+
+    document.getElementById(
+        "total-lipides"
+    ).textContent =
+        lipides.toFixed(1) + " g";
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        if (
+            document.getElementById(
+                "nom-aliment"
+            )
+        ) {
+
+            chargerAlimentSelectionne();
+
+
+            document
+                .getElementById(
+                    "quantite-aliment"
+                )
+                .addEventListener(
+                    "input",
+                    calculerQuantiteAliment
+                );
+
+        }
+
+    }
+);
+
 chargerJournee();
 
 afficherRepas();

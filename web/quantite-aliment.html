@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Ajouter un aliment</title>
+
+    <link
+        rel="stylesheet"
+        href="css/bootstrap.min.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- =========================
+         EN-TÊTE
+    ========================== -->
+
+    <header>
+
+        <div class="container">
+
+            <button
+                type="button"
+                class="btn btn-outline-primary mb-3"
+                onclick="history.back()"
+            >
+                ← Retour
+            </button>
+
+            <h1 id="nom-aliment">
+                Aliment
+            </h1>
+
+            <p
+                id="categorie-aliment"
+                class="text-secondary mb-0"
+            >
+                Catégorie
+            </p>
+
+        </div>
+
+    </header>
+
+
+    <main class="container">
+
+
+        <!-- =========================
+             INFORMATIONS NUTRITIONNELLES
+        ========================== -->
+
+        <section>
+
+            <div class="card p-3">
+
+                <h2 class="mb-3">
+                    Valeurs nutritionnelles
+                </h2>
+
+                <p class="text-secondary">
+                    Pour
+                    <span id="quantite-reference">
+                        100
+                    </span>
+                    <span id="unite-reference">
+                        g
+                    </span>
+                </p>
+
+
+                <div class="row text-center">
+
+                    <div class="col-6 col-md-3 mb-3">
+
+                        <div class="fw-bold">
+                            <span id="kcal-aliment">
+                                0
+                            </span>
+                            kcal
+                        </div>
+
+                        <small>
+                            Calories
+                        </small>
+
+                    </div>
+
+
+                    <div class="col-6 col-md-3 mb-3">
+
+                        <div class="fw-bold">
+                            <span id="proteines-aliment">
+                                0
+                            </span>
+                            g
+                        </div>
+
+                        <small>
+                            Protéines
+                        </small>
+
+                    </div>
+
+
+                    <div class="col-6 col-md-3 mb-3">
+
+                        <div class="fw-bold">
+                            <span id="glucides-aliment">
+                                0
+                            </span>
+                            g
+                        </div>
+
+                        <small>
+                            Glucides
+                        </small>
+
+                    </div>
+
+
+                    <div class="col-6 col-md-3 mb-3">
+
+                        <div class="fw-bold">
+                            <span id="lipides-aliment">
+                                0
+                            </span>
+                            g
+                        </div>
+
+                        <small>
+                            Matières grasses
+                        </small>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             QUANTITÉ
+        ========================== -->
+
+        <section>
+
+            <div class="card p-3">
+
+                <h2 class="mb-3">
+                    Quantité
+                </h2>
+
+                <div class="input-group">
+
+                    <input
+                        type="number"
+                        id="quantite-aliment"
+                        class="form-control"
+                        min="0"
+                        step="0.1"
+                        value="100"
+                    >
+
+                    <span
+                        class="input-group-text"
+                        id="unite-quantite"
+                    >
+                        g
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             REPAS
+        ========================== -->
+
+        <section>
+
+            <div class="card p-3">
+
+                <h2 class="mb-3">
+                    Repas
+                </h2>
+
+
+                <div class="form-check mb-2">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="repas"
+                        id="repas-petit-dejeuner"
+                        value="petitDejeuner"
+                    >
+
+                    <label
+                        class="form-check-label"
+                        for="repas-petit-dejeuner"
+                    >
+                        Petit-déjeuner
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="repas"
+                        id="repas-dejeuner"
+                        value="dejeuner"
+                        checked
+                    >
+
+                    <label
+                        class="form-check-label"
+                        for="repas-dejeuner"
+                    >
+                        Déjeuner
+                    </label>
+
+                </div>
+
+
+                <div class="form-check mb-2">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="repas"
+                        id="repas-diner"
+                        value="diner"
+                    >
+
+                    <label
+                        class="form-check-label"
+                        for="repas-diner"
+                    >
+                        Dîner
+                    </label>
+
+                </div>
+
+
+                <div class="form-check">
+
+                    <input
+                        class="form-check-input"
+                        type="radio"
+                        name="repas"
+                        id="repas-collation"
+                        value="collation"
+                    >
+
+                    <label
+                        class="form-check-label"
+                        for="repas-collation"
+                    >
+                        Collation
+                    </label>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             RÉSULTAT CALCULÉ
+        ========================== -->
+
+        <section>
+
+            <div class="card p-3">
+
+                <h2 class="mb-3">
+                    Pour cette quantité
+                </h2>
+
+                <div id="resume-quantite">
+
+                    <p>
+                        Calories :
+                        <strong id="total-kcal">
+                            0 kcal
+                        </strong>
+                    </p>
+
+                    <p>
+                        Protéines :
+                        <strong id="total-proteines">
+                            0 g
+                        </strong>
+                    </p>
+
+                    <p>
+                        Glucides :
+                        <strong id="total-glucides">
+                            0 g
+                        </strong>
+                    </p>
+
+                    <p class="mb-0">
+                        Matières grasses :
+                        <strong id="total-lipides">
+                            0 g
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             BOUTON AJOUTER
+        ========================== -->
+
+        <section>
+
+            <button
+                type="button"
+                id="ajouter-aliment-repas"
+                class="btn btn-primary w-100"
+            >
+                Ajouter au repas
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
+    <nav class="p-2">
+
+        <div class="container d-flex justify-content-around">
+
+            <button
+                onclick="location.href='index.html'"
+            >
+                Accueil
+            </button>
+
+            <button
+                class="active"
+                onclick="location.href='alimentation.html'"
+            >
+                Alimentation
+            </button>
+
+            <button
+                onclick="location.href='activite.html'"
+            >
+                Activité
+            </button>
+
+            <button
+                onclick="location.href='poids.html'"
+            >
+                Poids
+            </button>
+
+            <button
+                onclick="location.href='parametres.html'"
+            >
+                Paramètres
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/app.js"></script>
+
+</body>
+
+</html>
