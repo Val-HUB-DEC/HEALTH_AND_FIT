@@ -643,8 +643,20 @@ document.addEventListener(
             )
         ) {
 
-            chargerAlimentSelectionne();
+            const dateAliment =
+                document.getElementById(
+                    "date-aliment"
+                );
 
+            if (dateAliment) {
+
+                dateAliment.value =
+                    new Date()
+                        .toISOString()
+                        .split("T")[0];
+            }
+
+            chargerAlimentSelectionne();
 
             document
                 .getElementById(
@@ -654,7 +666,6 @@ document.addEventListener(
                     "input",
                     calculerQuantiteAliment
                 );
-
         }
 
     }
