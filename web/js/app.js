@@ -418,12 +418,18 @@ function selectionnerAliment(id) {
 
     try {
 
+        alert("Avant JSON");
+
+        const texteAliment = JSON.stringify(aliment);
+
+        alert("JSON créé : " + texteAliment);
+
         localStorage.setItem(
             "alimentSelectionne",
-            JSON.stringify(aliment)
+            texteAliment
         );
 
-        alert("Aliment sauvegardé");
+        alert("LocalStorage OK");
 
     } catch (erreur) {
 
