@@ -42,6 +42,32 @@ const listeAliments = document.getElementById("liste-aliments");
 
 const totalCalories = document.getElementById("total-calories");
 
+function afficherVersionApplication() {
+
+    const element =
+        document.getElementById("version-application");
+
+    if (!element) {
+        return;
+    }
+
+    fetch("version.json")
+        .then(function (reponse) {
+            return reponse.json();
+        })
+        .then(function (donnees) {
+
+            element.textContent =
+                donnees.version;
+
+        })
+        .catch(function () {
+
+            element.textContent =
+                "inconnue";
+
+        });
+}
 
 // ===============================
 // AJOUT D'UN ALIMENT
@@ -637,3 +663,5 @@ document.addEventListener(
 chargerJournee();
 
 afficherRepas();
+
+afficherVersionApplication();
