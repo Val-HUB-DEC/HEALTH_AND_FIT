@@ -1,200 +1,299 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Health & FIT - Alimentation</title>
+```
+<meta charset="UTF-8">
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <!-- CSS personnalisé -->
-    <link rel="stylesheet" href="css/style.css">
+<title>Health & FIT - Alimentation</title>
+
+<link
+    rel="stylesheet"
+    href="css/bootstrap.min.css"
+>
+
+<link
+    rel="stylesheet"
+    href="css/style.css"
+>
+```
+
 </head>
-
 
 <body>
 
-    <!-- En-tête -->
-    <header class="px-4 pt-4 pb-3">
+```
+<!-- =========================
+     EN-TÊTE
+========================== -->
 
-        <h1 class="fw-bold mb-0">
+<header>
+
+    <div class="container">
+
+        <h1 class="mb-0">
             Alimentation
         </h1>
-        
-    </header>
+
+    </div>
+
+</header>
 
 
-    <!-- Contenu principal -->
-    <main class="container-fluid px-4 pb-5">
+<!-- =========================
+     CONTENU
+========================== -->
+
+<main class="container">
 
 
-        <!-- Repas du jour -->
-        <section class="mb-5">
+    <!-- =========================
+         REPAS DU JOUR
+    ========================== -->
 
-            <div class="d-flex justify-content-between align-items-center mb-4">
+    <section>
 
-                <h2 class="h5 fw-bold mb-0">
-                    Aujourd'hui
-                </h2>
+        <div class="d-flex justify-content-between align-items-center mb-3">
 
-                <span class="small">
-                    Calories
+            <h2 class="mb-0">
+                Aujourd'hui
+            </h2>
+
+            <span class="text-secondary small">
+                Calories
+            </span>
+
+        </div>
+
+
+        <!-- Ajouter un aliment -->
+
+        <a
+            href="ajouter-aliment.html"
+            class="btn btn-primary w-100 mb-4"
+        >
+            + Ajouter un aliment
+        </a>
+
+
+        <!-- =========================
+             PETIT-DÉJEUNER
+        ========================== -->
+
+        <div class="card p-3 mb-3">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h3 class="h6 fw-bold mb-0">
+                    Petit-déjeuner
+                </h3>
+
+                <span class="text-secondary small">
+
+                    <span id="calories-petitDejeuner">
+                        0
+                    </span>
+
+                    kcal
+
                 </span>
 
             </div>
 
-            <a
-                href="ajouter-aliment.html"
-                class="btn btn-primary w-100"
-            >
-                + Ajouter un aliment
-            </a>
 
-            <!-- Petit-déjeuner -->
-            <div class="mb-4">
+            <div id="liste-petitDejeuner">
 
-                <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <h3 class="h6 fw-bold mb-0">
-                        Petit-déjeuner
-                    </h3>
-
-                    <span class="small">
-                        <span id="calories-petitDejeuner">0</span> kcal
-                    </span>
-
-                </div>
-
-                <div id="liste-petitDejeuner">
-
-                    <p class="small mb-0">
-                        Aucun aliment enregistré
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- Déjeuner -->
-            <div class="mb-4">
-
-                <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <h3 class="h6 fw-bold mb-0">
-                        Déjeuner
-                    </h3>
-
-                    <span class="small">
-                        <span id="calories-dejeuner">0</span> kcal
-                    </span>
-
-                </div>
-
-                <div id="liste-dejeuner">
-
-                    <p class="small mb-0">
-                        Aucun aliment enregistré
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- Dîner -->
-            <div class="mb-4">
-
-                <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <h3 class="h6 fw-bold mb-0">
-                        Dîner
-                    </h3>
-
-                    <span class="small">
-                        <span id="calories-diner">0</span> kcal
-                    </span>
-
-                </div>
-
-                <div id="liste-diner">
-
-                    <p class="small mb-0">
-                        Aucun aliment enregistré
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- Collation -->
-            <div class="mb-4">
-
-                <div class="d-flex justify-content-between align-items-center mb-2">
-
-                    <h3 class="h6 fw-bold mb-0">
-                        Collation
-                    </h3>
-
-                    <span class="small">
-                        <span id="calories-collation">0</span> kcal
-                    </span>
-
-                </div>
-
-                <div id="liste-collation">
-
-                    <p class="small mb-0">
-                        Aucun aliment enregistré
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <!-- Total -->
-            <div class="d-flex justify-content-between align-items-center pt-3 border-top">
-
-                <h3 class="h5 fw-bold mb-0">
-                    Total
-                </h3>
-
-                <p class="h5 fw-bold mb-0">
-                    <span id="total-calories">0</span> kcal
+                <p class="text-secondary small mb-0">
+                    Aucun aliment enregistré
                 </p>
 
             </div>
 
-        </section>
+        </div>
 
 
-        <!-- Ajouter un aliment -->
-        <section class="mb-5">
+        <!-- =========================
+             DÉJEUNER
+        ========================== -->
 
-            <h2 class="h5 fw-bold mb-4">
-                Ajouter un aliment
-            </h2>
+        <div class="card p-3 mb-3">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h3 class="h6 fw-bold mb-0">
+                    Déjeuner
+                </h3>
+
+                <span class="text-secondary small">
+
+                    <span id="calories-dejeuner">
+                        0
+                    </span>
+
+                    kcal
+
+                </span>
+
+            </div>
+
+
+            <div id="liste-dejeuner">
+
+                <p class="text-secondary small mb-0">
+                    Aucun aliment enregistré
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             DÎNER
+        ========================== -->
+
+        <div class="card p-3 mb-3">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h3 class="h6 fw-bold mb-0">
+                    Dîner
+                </h3>
+
+                <span class="text-secondary small">
+
+                    <span id="calories-diner">
+                        0
+                    </span>
+
+                    kcal
+
+                </span>
+
+            </div>
+
+
+            <div id="liste-diner">
+
+                <p class="text-secondary small mb-0">
+                    Aucun aliment enregistré
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             COLLATION
+        ========================== -->
+
+        <div class="card p-3 mb-3">
+
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h3 class="h6 fw-bold mb-0">
+                    Collation
+                </h3>
+
+                <span class="text-secondary small">
+
+                    <span id="calories-collation">
+                        0
+                    </span>
+
+                    kcal
+
+                </span>
+
+            </div>
+
+
+            <div id="liste-collation">
+
+                <p class="text-secondary small mb-0">
+                    Aucun aliment enregistré
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             TOTAL
+        ========================== -->
+
+        <div class="card p-3">
+
+            <div class="d-flex justify-content-between align-items-center">
+
+                <h3 class="h6 fw-bold mb-0">
+                    Total
+                </h3>
+
+                <p class="fw-bold mb-0">
+
+                    <span id="total-calories">
+                        0
+                    </span>
+
+                    kcal
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         AJOUTER UN ALIMENT
+    ========================== -->
+
+    <section>
+
+        <h2 class="mb-3">
+            Ajouter un aliment
+        </h2>
+
+
+        <div class="card p-3">
 
 
             <!-- Repas -->
+
             <div class="mb-3">
 
-                <label for="repas" class="form-label small">
+                <label
+                    for="repas"
+                    class="form-label"
+                >
                     Repas
                 </label>
 
-                <select id="repas" class="form-select">
+                <select
+                    id="repas"
+                    class="form-select form-select-sm"
+                >
 
                     <option value="petitDejeuner">
                         Petit-déjeuner
                     </option>
 
-                    <option value="dejeuner" selected>
+                    <option
+                        value="dejeuner"
+                        selected
+                    >
                         Déjeuner
                     </option>
 
@@ -212,72 +311,96 @@
 
 
             <!-- Aliment -->
+
             <div class="mb-3">
 
-                <label for="aliment" class="form-label small">
+                <label
+                    for="aliment"
+                    class="form-label"
+                >
                     Aliment
                 </label>
 
                 <input
                     type="text"
                     id="aliment"
-                    class="form-control"
-                    placeholder="Ex : Poulet">
+                    class="form-control form-control-sm"
+                    placeholder="Ex : Poulet"
+                >
 
             </div>
 
 
             <!-- Quantité -->
+
             <div class="mb-3">
 
-                <label for="quantite" class="form-label small">
+                <label
+                    for="quantite"
+                    class="form-label"
+                >
                     Quantité (g)
                 </label>
 
                 <input
                     type="number"
                     id="quantite"
-                    class="form-control"
-                    placeholder="Ex : 150">
+                    class="form-control form-control-sm"
+                    placeholder="Ex : 150"
+                >
 
             </div>
 
 
             <!-- Calories -->
-            <div class="mb-4">
 
-                <label for="calories" class="form-label small">
+            <div class="mb-3">
+
+                <label
+                    for="calories"
+                    class="form-label"
+                >
                     Calories pour 100 g
                 </label>
 
                 <input
                     type="number"
                     id="calories"
-                    class="form-control"
-                    placeholder="Ex : 165">
+                    class="form-control form-control-sm"
+                    placeholder="Ex : 165"
+                >
 
             </div>
 
 
             <!-- Bouton -->
+
             <button
+                type="button"
                 id="ajouter-aliment"
-                class="btn btn-primary w-100 py-2">
-
+                class="btn btn-primary w-100"
+            >
                 Ajouter l'aliment
-
             </button>
 
-        </section>
+
+        </div>
+
+    </section>
 
 
-        <!-- Bilan -->
-        <section>
+    <!-- =========================
+         BILAN
+    ========================== -->
 
-            <h2 class="h5 fw-bold mb-4">
-                Bilan
-            </h2>
+    <section>
 
+        <h2 class="mb-3">
+            Bilan
+        </h2>
+
+
+        <div class="card p-3">
 
             <div class="d-flex justify-content-between align-items-center mb-3">
 
@@ -286,7 +409,13 @@
                 </span>
 
                 <strong>
-                    <span id="bilan-calories">0</span> kcal
+
+                    <span id="bilan-calories">
+                        0
+                    </span>
+
+                    kcal
+
                 </strong>
 
             </div>
@@ -299,81 +428,127 @@
                 </span>
 
                 <strong>
-                    <span id="objectif-calories">0</span> kcal
+
+                    <span id="objectif-calories">
+                        0
+                    </span>
+
+                    kcal
+
                 </strong>
 
             </div>
 
-        </section>
-
-    </main>
-
-
-    <!-- Navigation -->
-    <nav class="navbar fixed-bottom">
-
-        <div class="container-fluid justify-content-around py-2">
-
-
-            <button
-                class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='index.html'">
-
-                <span>⌂</span>
-                <small>Accueil</small>
-
-            </button>
-
-
-            <button
-                class="btn active d-flex flex-column align-items-center"
-                onclick="window.location.href='alimentation.html'">
-
-                <span>🍽</span>
-                <small>Repas</small>
-
-            </button>
-
-
-            <button
-                class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='activite.html'">
-
-                <span>🏃</span>
-                <small>Activité</small>
-
-            </button>
-
-
-            <button
-                class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='poids.html'">
-
-                <span>⚖</span>
-                <small>Poids</small>
-
-            </button>
-
-
-            <button
-                class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='parametres.html'">
-
-                <span>⚙</span>
-                <small>Réglages</small>
-
-            </button>
-
         </div>
 
-    </nav>
+    </section>
 
 
-    <!-- Bootstrap -->
-    <script src="js/bootstrap.bundle.min.js"></script>
+</main>
 
-    <!-- JavaScript personnalisé -->
-    <script src="js/app.js"></script>
+
+<!-- =========================
+     NAVIGATION
+========================== -->
+
+<nav class="navbar fixed-bottom border-top">
+
+    <div class="container-fluid justify-content-around py-2">
+
+
+        <!-- Accueil -->
+
+        <button
+            class="btn d-flex flex-column align-items-center"
+            onclick="window.location.href='index.html'"
+        >
+
+            <span>⌂</span>
+
+            <small>
+                Accueil
+            </small>
+
+        </button>
+
+
+        <!-- Repas -->
+
+        <button
+            class="btn active d-flex flex-column align-items-center"
+            onclick="window.location.href='alimentation.html'"
+        >
+
+            <span>🍽</span>
+
+            <small>
+                Repas
+            </small>
+
+        </button>
+
+
+        <!-- Activité -->
+
+        <button
+            class="btn d-flex flex-column align-items-center"
+            onclick="window.location.href='activite.html'"
+        >
+
+            <span>🏃</span>
+
+            <small>
+                Activité
+            </small>
+
+        </button>
+
+
+        <!-- Poids -->
+
+        <button
+            class="btn d-flex flex-column align-items-center"
+            onclick="window.location.href='poids.html'"
+        >
+
+            <span>⚖</span>
+
+            <small>
+                Poids
+            </small>
+
+        </button>
+
+
+        <!-- Réglages -->
+
+        <button
+            class="btn d-flex flex-column align-items-center"
+            onclick="window.location.href='parametres.html'"
+        >
+
+            <span>⚙</span>
+
+            <small>
+                Réglages
+            </small>
+
+        </button>
+
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================== -->
+
+<script src="js/bootstrap.bundle.min.js"></script>
+
+<script src="js/app.js"></script>
+```
 
 </body>
 
