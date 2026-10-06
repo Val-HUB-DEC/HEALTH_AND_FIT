@@ -316,8 +316,6 @@ function afficherAliments(aliments) {
 
         element.onclick = function () {
 
-            alert("CLIC détecté : " + aliment.nom);
-
             selectionnerAliment(aliment.id);
 
         };
@@ -402,10 +400,17 @@ function filtrerAliments() {
 
 function selectionnerAliment(id) {
 
+    alert("ID reçu : " + id);
+
     const aliment =
         alimentsDisponibles.find(
             aliment => aliment.id === id
         );
+
+    alert(
+        "Aliment trouvé : " +
+        (aliment ? aliment.nom : "NON")
+    );
 
     if (!aliment) {
         return;
@@ -416,7 +421,7 @@ function selectionnerAliment(id) {
         JSON.stringify(aliment)
     );
 
-    alert("Ouverture de la page quantité");
+    alert("Aliment sauvegardé");
 
     window.location.href =
         "quantite-aliment.html";
