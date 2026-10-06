@@ -316,6 +316,8 @@ function afficherAliments(aliments) {
 
         element.onclick = function () {
 
+            alert("CLIC détecté : " + aliment.nom);
+
             selectionnerAliment(aliment.id);
 
         };
@@ -415,7 +417,7 @@ function selectionnerAliment(id) {
     );
 
     alert("Ouverture de la page quantité");
-    
+
     window.location.href =
         "quantite-aliment.html";
 }
