@@ -27,6 +27,7 @@
 
 <body>
 
+
     <!-- =========================
          EN-TÊTE
     ========================== -->
@@ -35,7 +36,7 @@
 
         <div class="container">
 
-            <h1 class="mb-1">
+            <h1 class="mb-0">
                 Ajouter un <span>aliment</span>
             </h1>
 
@@ -45,13 +46,20 @@
 
 
     <!-- =========================
-         RECHERCHE
+         CONTENU
     ========================== -->
 
     <main class="container">
-        <p class="text-secondary mb-0">
-                Choisis l'aliment à ajouter
+
+        <p class="text-secondary mb-3">
+            Choisis l'aliment à ajouter
         </p>
+
+
+        <!-- =========================
+             RECHERCHE
+        ========================== -->
+
         <section>
 
             <div class="card p-3">
@@ -66,7 +74,7 @@
                 <input
                     type="text"
                     id="recherche-aliment"
-                    class="form-control"
+                    class="form-control form-control-sm"
                     placeholder="Ex : poulet, riz, tomate..."
                 >
 
@@ -92,7 +100,7 @@
 
                 <select
                     id="filtre-categorie"
-                    class="form-select"
+                    class="form-select form-select-sm"
                 >
 
                     <option value="">
@@ -129,69 +137,108 @@
     </main>
 
 
-    <!-- Navigation -->
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
     <nav class="navbar fixed-bottom border-top">
 
         <div class="container-fluid justify-content-around py-2">
 
 
+            <!-- Accueil -->
+
             <button
                 class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='index.html'">
+                onclick="window.location.href='index.html'"
+            >
 
                 <span>⌂</span>
-                <small>Accueil</small>
+
+                <small>
+                    Accueil
+                </small>
 
             </button>
 
 
+            <!-- Repas -->
+
             <button
-                class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='alimentation.html'">
+                class="btn active d-flex flex-column align-items-center"
+                onclick="window.location.href='alimentation.html'"
+            >
 
                 <span>🍽</span>
-                <small>Repas</small>
+
+                <small>
+                    Repas
+                </small>
 
             </button>
 
 
+            <!-- Activité -->
+
             <button
                 class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='activite.html'">
+                onclick="window.location.href='activite.html'"
+            >
 
                 <span>🏃</span>
-                <small>Activité</small>
+
+                <small>
+                    Activité
+                </small>
 
             </button>
 
 
+            <!-- Poids -->
+
             <button
                 class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='poids.html'">
+                onclick="window.location.href='poids.html'"
+            >
 
                 <span>⚖</span>
-                <small>Poids</small>
+
+                <small>
+                    Poids
+                </small>
 
             </button>
 
+
+            <!-- Réglages -->
 
             <button
                 class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='parametres.html'">
+                onclick="window.location.href='parametres.html'"
+            >
 
                 <span>⚙</span>
-                <small>Réglages</small>
+
+                <small>
+                    Réglages
+                </small>
 
             </button>
+
 
         </div>
 
     </nav>
 
 
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
     <script src="js/bootstrap.bundle.min.js"></script>
 
     <script src="js/app.js"></script>
+
 
 </body>
 

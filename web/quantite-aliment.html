@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Ajouter un aliment</title>
+    <title>Quantité de l'aliment</title>
 
     <link
         rel="stylesheet"
@@ -27,6 +27,7 @@
 
 <body>
 
+
     <!-- =========================
          EN-TÊTE
     ========================== -->
@@ -35,15 +36,7 @@
 
         <div class="container">
 
-            <button
-                type="button"
-                class="btn btn-outline-primary mb-3"
-                onclick="history.back()"
-            >
-                ← Retour
-            </button>
-
-            <h1 id="nom-aliment">
+            <h1 id="nom-aliment" class="mb-0">
                 Aliment
             </h1>
 
@@ -52,14 +45,20 @@
     </header>
 
 
+    <!-- =========================
+         CONTENU
+    ========================== -->
+
     <main class="container">
 
         <p
-                id="categorie-aliment"
-                class="text-secondary mb-0"
-            >
-                Catégorie
+            id="categorie-aliment"
+            class="text-secondary mb-3"
+        >
+            Catégorie
         </p>
+
+
         <!-- =========================
              INFORMATIONS NUTRITIONNELLES
         ========================== -->
@@ -68,11 +67,11 @@
 
             <div class="card p-3">
 
-                <h2 class="mb-3">
+                <h2 class="mb-2">
                     Valeurs nutritionnelles
                 </h2>
 
-                <p class="text-secondary">
+                <p class="text-secondary mb-3">
                     Pour
                     <span id="quantite-reference">
                         100
@@ -85,68 +84,106 @@
 
                 <div class="row text-center">
 
+
+                    <!-- Calories -->
+
                     <div class="col-6 col-md-3 mb-3">
 
-                        <div class="fw-bold">
-                            <span id="kcal-aliment">
-                                0
-                            </span>
-                            kcal
-                        </div>
+                        <div class="info-nutrition">
 
-                        <small>
-                            Calories
-                        </small>
+                            <small>
+                                Calories
+                            </small>
+
+                            <div class="valeur">
+
+                                <span id="kcal-aliment">
+                                    0
+                                </span>
+
+                                kcal
+
+                            </div>
+
+                        </div>
 
                     </div>
 
 
+                    <!-- Protéines -->
+
                     <div class="col-6 col-md-3 mb-3">
 
-                        <div class="fw-bold">
-                            <span id="proteines-aliment">
-                                0
-                            </span>
-                            g
-                        </div>
+                        <div class="info-nutrition">
 
-                        <small>
-                            Protéines
-                        </small>
+                            <small>
+                                Protéines
+                            </small>
+
+                            <div class="valeur">
+
+                                <span id="proteines-aliment">
+                                    0
+                                </span>
+
+                                g
+
+                            </div>
+
+                        </div>
 
                     </div>
 
 
+                    <!-- Glucides -->
+
                     <div class="col-6 col-md-3 mb-3">
 
-                        <div class="fw-bold">
-                            <span id="glucides-aliment">
-                                0
-                            </span>
-                            g
-                        </div>
+                        <div class="info-nutrition">
 
-                        <small>
-                            Glucides
-                        </small>
+                            <small>
+                                Glucides
+                            </small>
+
+                            <div class="valeur">
+
+                                <span id="glucides-aliment">
+                                    0
+                                </span>
+
+                                g
+
+                            </div>
+
+                        </div>
 
                     </div>
 
 
+                    <!-- Lipides -->
+
                     <div class="col-6 col-md-3 mb-3">
 
-                        <div class="fw-bold">
-                            <span id="lipides-aliment">
-                                0
-                            </span>
-                            g
+                        <div class="info-nutrition">
+
+                            <small>
+                                Matières grasses
+                            </small>
+
+                            <div class="valeur">
+
+                                <span id="lipides-aliment">
+                                    0
+                                </span>
+
+                                g
+
+                            </div>
+
                         </div>
 
-                        <small>
-                            Matières grasses
-                        </small>
-
                     </div>
+
 
                 </div>
 
@@ -172,7 +209,7 @@
                     <input
                         type="number"
                         id="quantite-aliment"
-                        class="form-control"
+                        class="form-control form-control-sm"
                         min="0"
                         step="0.1"
                         value="100"
@@ -302,34 +339,72 @@
                     Pour cette quantité
                 </h2>
 
-                <div id="resume-quantite">
+                <div
+                    id="resume-quantite"
+                    class="info-nutrition"
+                >
 
-                    <p>
-                        Calories :
-                        <strong id="total-kcal">
+                    <p class="mb-2">
+
+                        <span class="text-secondary">
+                            Calories
+                        </span>
+
+                        <strong
+                            id="total-kcal"
+                            class="valeur"
+                        >
                             0 kcal
                         </strong>
+
                     </p>
 
-                    <p>
-                        Protéines :
-                        <strong id="total-proteines">
+
+                    <p class="mb-2">
+
+                        <span class="text-secondary">
+                            Protéines
+                        </span>
+
+                        <strong
+                            id="total-proteines"
+                            class="valeur"
+                        >
                             0 g
                         </strong>
+
                     </p>
 
-                    <p>
-                        Glucides :
-                        <strong id="total-glucides">
+
+                    <p class="mb-2">
+
+                        <span class="text-secondary">
+                            Glucides
+                        </span>
+
+                        <strong
+                            id="total-glucides"
+                            class="valeur"
+                        >
                             0 g
                         </strong>
+
                     </p>
+
 
                     <p class="mb-0">
-                        Matières grasses :
-                        <strong id="total-lipides">
+
+                        <span class="text-secondary">
+                            Matières grasses
+                        </span>
+
+                        <strong
+                            id="total-lipides"
+                            class="valeur"
+                        >
                             0 g
                         </strong>
+
                     </p>
 
                 </div>
@@ -355,72 +430,112 @@
 
         </section>
 
+
     </main>
 
 
-    <!-- Navigation -->
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
+
     <nav class="navbar fixed-bottom border-top">
 
         <div class="container-fluid justify-content-around py-2">
 
 
+            <!-- Accueil -->
+
             <button
                 class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='index.html'">
+                onclick="window.location.href='index.html'"
+            >
 
                 <span>⌂</span>
-                <small>Accueil</small>
+
+                <small>
+                    Accueil
+                </small>
 
             </button>
 
 
+            <!-- Repas -->
+
             <button
-                class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='alimentation.html'">
+                class="btn active d-flex flex-column align-items-center"
+                onclick="window.location.href='alimentation.html'"
+            >
 
                 <span>🍽</span>
-                <small>Repas</small>
+
+                <small>
+                    Repas
+                </small>
 
             </button>
 
 
+            <!-- Activité -->
+
             <button
                 class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='activite.html'">
+                onclick="window.location.href='activite.html'"
+            >
 
                 <span>🏃</span>
-                <small>Activité</small>
+
+                <small>
+                    Activité
+                </small>
 
             </button>
 
 
+            <!-- Poids -->
+
             <button
                 class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='poids.html'">
+                onclick="window.location.href='poids.html'"
+            >
 
                 <span>⚖</span>
-                <small>Poids</small>
+
+                <small>
+                    Poids
+                </small>
 
             </button>
 
+
+            <!-- Réglages -->
 
             <button
                 class="btn d-flex flex-column align-items-center"
-                onclick="window.location.href='parametres.html'">
+                onclick="window.location.href='parametres.html'"
+            >
 
                 <span>⚙</span>
-                <small>Réglages</small>
+
+                <small>
+                    Réglages
+                </small>
 
             </button>
+
 
         </div>
 
     </nav>
 
 
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
     <script src="js/bootstrap.bundle.min.js"></script>
 
     <script src="js/app.js"></script>
+
 
 </body>
 
