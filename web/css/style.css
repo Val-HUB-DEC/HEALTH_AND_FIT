@@ -50,7 +50,7 @@ body {
 header {
     background-color: var(--fond);
 
-    padding: 22px 0 18px;
+    padding: 14px 0 10px;
 
     border-bottom: 1px solid var(--bordure);
 }
@@ -60,7 +60,7 @@ header h1 {
 
     color: var(--texte);
 
-    font-size: 1.6rem;
+    font-size: 1.35rem;
     font-weight: 700;
 }
 
@@ -69,7 +69,7 @@ header h1 span {
 }
 
 header p {
-    margin-top: 5px;
+    margin-top: 3px;
 }
 
 
@@ -103,7 +103,7 @@ small,
    ========================= */
 
 main.container {
-    padding-top: 20px;
+    padding-top: 14px;
 }
 
 
