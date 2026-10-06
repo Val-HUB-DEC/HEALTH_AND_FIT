@@ -400,48 +400,19 @@ function filtrerAliments() {
 
 function selectionnerAliment(id) {
 
-    alert("ID reçu : " + id);
-
     const aliment =
         alimentsDisponibles.find(
             aliment => aliment.id === id
         );
 
-    alert(
-        "Aliment trouvé : " +
-        (aliment ? aliment.nom : "NON")
-    );
-
     if (!aliment) {
         return;
     }
 
-    try {
-
-        alert("Avant JSON");
-
-        const texteAliment = JSON.stringify(aliment);
-
-        alert("JSON créé : " + texteAliment);
-
-        localStorage.setItem(
-            "alimentSelectionne",
-            texteAliment
-        );
-
-        alert("LocalStorage OK");
-
-    } catch (erreur) {
-
-        alert(
-            "Erreur localStorage : " +
-            erreur.message
-        );
-
-        return;
-    }
-
-    alert("Tentative ouverture page quantité");
+    localStorage.setItem(
+        "alimentSelectionne",
+        JSON.stringify(aliment)
+    );
 
     window.location.href =
         "quantite-aliment.html";

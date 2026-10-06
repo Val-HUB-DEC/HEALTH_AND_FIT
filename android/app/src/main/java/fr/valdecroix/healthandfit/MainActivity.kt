@@ -25,6 +25,7 @@ class MainActivity : ComponentActivity() {
         )
 
         webView.settings.javaScriptEnabled = true
+        webView.settings.domStorageEnabled = true
 
         val assetLoader = WebViewAssetLoader.Builder()
             .addPathHandler(
