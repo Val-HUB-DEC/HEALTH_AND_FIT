@@ -35,6 +35,8 @@ class MainActivity : ComponentActivity() {
                 )
             )
             .build()
+        
+        webView.webChromeClient = android.webkit.WebChromeClient()
 
         webView.webViewClient = object : android.webkit.WebViewClient() {
 

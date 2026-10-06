@@ -246,6 +246,13 @@ function testerBaseDeDonnees() {
     );
 }
 
+function testerRechercheAliment() {
+
+    const resultat = Android.rechercherAliments("Poulet");
+
+    alert(resultat);
+}
+
 chargerJournee();
 
 afficherRepas();
