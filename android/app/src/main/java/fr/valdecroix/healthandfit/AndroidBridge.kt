@@ -160,4 +160,109 @@ class AndroidBridge(
 
             return resultat != -1L
     }
+
+    @JavascriptInterface
+    fun obtenirConsommations(date: String): String {
+
+        val databaseHelper = HealthAndFitDatabase(context)
+        val db = databaseHelper.readableDatabase
+
+        val resultat = JSONArray()
+
+        val curseur = db.rawQuery(
+            """
+            SELECT
+                consommations.id,
+                consommations.date,
+                consommations.repas,
+                consommations.aliment_id,
+                consommations.quantite,
+                aliments.nom,
+                aliments.unite_reference,
+                aliments.quantite_reference,
+                aliments.kcal,
+                aliments.proteines,
+                aliments.glucides,
+                aliments.lipides
+            FROM consommations
+            INNER JOIN aliments
+                ON consommations.aliment_id = aliments.id
+            WHERE consommations.date = ?
+            ORDER BY consommations.id
+            """.trimIndent(),
+            arrayOf(date)
+        )
+
+        while (curseur.moveToNext()) {
+
+            val consommation = JSONObject()
+
+            consommation.put(
+                "id",
+                curseur.getInt(0)
+            )
+
+            consommation.put(
+                "date",
+                curseur.getString(1)
+            )
+
+            consommation.put(
+                "repas",
+                curseur.getString(2)
+            )
+
+            consommation.put(
+                "aliment_id",
+                curseur.getInt(3)
+            )
+
+            consommation.put(
+                "quantite",
+                curseur.getDouble(4)
+            )
+
+            consommation.put(
+                "nom",
+                curseur.getString(5)
+            )
+
+            consommation.put(
+                "unite_reference",
+                curseur.getString(6)
+            )
+
+            consommation.put(
+                "quantite_reference",
+                curseur.getDouble(7)
+            )
+
+            consommation.put(
+                "kcal",
+                curseur.getDouble(8)
+            )
+
+            consommation.put(
+                "proteines",
+                curseur.getDouble(9)
+            )
+
+            consommation.put(
+                "glucides",
+                curseur.getDouble(10)
+            )
+
+            consommation.put(
+                "lipides",
+                curseur.getDouble(11)
+            )
+
+            resultat.put(consommation)
+        }
+
+        curseur.close()
+        db.close()
+
+        return resultat.toString()
+    }
 }

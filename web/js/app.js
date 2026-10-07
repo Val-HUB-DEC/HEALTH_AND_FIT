@@ -798,6 +798,28 @@ document.addEventListener(
     }
 );
 
+function testerLectureConsommations() {
+
+    const date =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+    const resultat =
+        Android.obtenirConsommations(date);
+
+    alert(resultat);
+}
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        testerLectureConsommations();
+
+    }
+);
+
 chargerJournee();
 
 afficherRepas();
