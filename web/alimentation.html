@@ -62,12 +62,78 @@
             <h2 class="mb-0">
                 Aujourd'hui
             </h2>
-
-            <span class="text-secondary small">
-                Calories
-            </span>
-
         </div>
+
+        <!-- =========================
+            BILAN
+        ========================== -->
+
+        <section>
+            <div class="card p-3">
+
+                <p class="text-secondary small mb-3">
+                    TOTAL DE LA JOURNÉE
+                </p>
+
+                <div class="row text-center">
+
+                    <div class="col-6 mb-3">
+                        <div
+                            id="total-kcal-journee"
+                            class="fs-4 fw-bold"
+                        >
+                            0 kcal
+                        </div>
+
+                        <small>
+                            Calories
+                        </small>
+                    </div>
+
+                    <div class="col-6 mb-3">
+                        <div
+                            id="total-proteines-journee"
+                            class="fs-4 fw-bold"
+                        >
+                            0 g
+                        </div>
+
+                        <small>
+                            Protéines
+                        </small>
+                    </div>
+
+                    <div class="col-6">
+                        <div
+                            id="total-glucides-journee"
+                            class="fs-4 fw-bold"
+                        >
+                            0 g
+                        </div>
+
+                        <small>
+                            Glucides
+                        </small>
+                    </div>
+
+                    <div class="col-6">
+                        <div
+                            id="total-lipides-journee"
+                            class="fs-4 fw-bold"
+                        >
+                            0 g
+                        </div>
+
+                        <small>
+                            Lipides
+                        </small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
 
 
         <!-- Ajouter un aliment -->
@@ -79,6 +145,49 @@
             + Ajouter un aliment
         </a>
 
+        <section>
+
+            <div
+                class="btn-group w-100"
+                role="group"
+                aria-label="Nutriment affiché"
+            >
+
+                <button
+                    type="button"
+                    class="btn btn-primary"
+                    id="selection-kcal"
+                >
+                    kcal
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    id="selection-proteines"
+                >
+                    Prot.
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    id="selection-glucides"
+                >
+                    Gluc.
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-outline-primary"
+                    id="selection-lipides"
+                >
+                    Lip.
+                </button>
+
+            </div>
+
+        </section>
 
         <!-- =========================
              PETIT-DÉJEUNER
@@ -128,14 +237,11 @@
                     Déjeuner
                 </h3>
 
-                <span class="text-secondary small">
-
-                    <span id="calories-dejeuner">
-                        0
-                    </span>
-
-                    kcal
-
+                <span
+                    id="calories-dejeuner"
+                    class="text-secondary small"
+                >
+                    0 kcal
                 </span>
 
             </div>
@@ -164,14 +270,11 @@
                     Dîner
                 </h3>
 
-                <span class="text-secondary small">
-
-                    <span id="calories-diner">
-                        0
-                    </span>
-
-                    kcal
-
+                <span
+                    id="calories-dejeuner"
+                    class="text-secondary small"
+                >
+                    0 kcal
                 </span>
 
             </div>
@@ -200,14 +303,11 @@
                     Collation
                 </h3>
 
-                <span class="text-secondary small">
-
-                    <span id="calories-collation">
-                        0
-                    </span>
-
-                    kcal
-
+                <span
+                    id="calories-dejeuner"
+                    class="text-secondary small"
+                >
+                    0 kcal
                 </span>
 
             </div>
@@ -239,10 +339,8 @@
                 <p class="fw-bold mb-0">
 
                     <span id="total-calories">
-                        0
+                        0 kcal
                     </span>
-
-                    kcal
 
                 </p>
 
@@ -251,196 +349,6 @@
         </div>
 
     </section>
-
-
-    <!-- =========================
-         AJOUTER UN ALIMENT
-    ========================== -->
-
-    <section>
-
-        <h2 class="mb-3">
-            Ajouter un aliment
-        </h2>
-
-
-        <div class="card p-3">
-
-
-            <!-- Repas -->
-
-            <div class="mb-3">
-
-                <label
-                    for="repas"
-                    class="form-label"
-                >
-                    Repas
-                </label>
-
-                <select
-                    id="repas"
-                    class="form-select form-select-sm"
-                >
-
-                    <option value="petitDejeuner">
-                        Petit-déjeuner
-                    </option>
-
-                    <option
-                        value="dejeuner"
-                        selected
-                    >
-                        Déjeuner
-                    </option>
-
-                    <option value="diner">
-                        Dîner
-                    </option>
-
-                    <option value="collation">
-                        Collation
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <!-- Aliment -->
-
-            <div class="mb-3">
-
-                <label
-                    for="aliment"
-                    class="form-label"
-                >
-                    Aliment
-                </label>
-
-                <input
-                    type="text"
-                    id="aliment"
-                    class="form-control form-control-sm"
-                    placeholder="Ex : Poulet"
-                >
-
-            </div>
-
-
-            <!-- Quantité -->
-
-            <div class="mb-3">
-
-                <label
-                    for="quantite"
-                    class="form-label"
-                >
-                    Quantité (g)
-                </label>
-
-                <input
-                    type="number"
-                    id="quantite"
-                    class="form-control form-control-sm"
-                    placeholder="Ex : 150"
-                >
-
-            </div>
-
-
-            <!-- Calories -->
-
-            <div class="mb-3">
-
-                <label
-                    for="calories"
-                    class="form-label"
-                >
-                    Calories pour 100 g
-                </label>
-
-                <input
-                    type="number"
-                    id="calories"
-                    class="form-control form-control-sm"
-                    placeholder="Ex : 165"
-                >
-
-            </div>
-
-
-            <!-- Bouton -->
-
-            <button
-                type="button"
-                id="ajouter-aliment"
-                class="btn btn-primary w-100"
-            >
-                Ajouter l'aliment
-            </button>
-
-
-        </div>
-
-    </section>
-
-
-    <!-- =========================
-         BILAN
-    ========================== -->
-
-    <section>
-
-        <h2 class="mb-3">
-            Bilan
-        </h2>
-
-
-        <div class="card p-3">
-
-            <div class="d-flex justify-content-between align-items-center mb-3">
-
-                <span>
-                    Calories consommées
-                </span>
-
-                <strong>
-
-                    <span id="bilan-calories">
-                        0
-                    </span>
-
-                    kcal
-
-                </strong>
-
-            </div>
-
-
-            <div class="d-flex justify-content-between align-items-center">
-
-                <span>
-                    Objectif
-                </span>
-
-                <strong>
-
-                    <span id="objectif-calories">
-                        0
-                    </span>
-
-                    kcal
-
-                </strong>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
 </main>
 
 

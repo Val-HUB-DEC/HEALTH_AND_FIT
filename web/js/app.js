@@ -130,8 +130,9 @@ if (boutonAjouter) {
 // AFFICHAGE DU REPAS
 // ===============================
 
-function afficherRepas() {
+let nutrimentSelectionne = "kcal";
 
+function afficherRepas() {
     if (!document.getElementById("liste-petitDejeuner")) {
         return;
     }
@@ -170,42 +171,112 @@ function afficherRepas() {
     };
 
     const totaux = {
-        petitDejeuner: 0,
-        dejeuner: 0,
-        diner: 0,
-        collation: 0
+        petitDejeuner: {
+            kcal: 0,
+            proteines: 0,
+            glucides: 0,
+            lipides: 0
+        },
+
+        dejeuner: {
+            kcal: 0,
+            proteines: 0,
+            glucides: 0,
+            lipides: 0
+        },
+
+        diner: {
+            kcal: 0,
+            proteines: 0,
+            glucides: 0,
+            lipides: 0
+        },
+
+        collation: {
+            kcal: 0,
+            proteines: 0,
+            glucides: 0,
+            lipides: 0
+        }
     };
 
-    let totalJournee = 0;
+    const totalJournee = {
+        kcal: 0,
+        proteines: 0,
+        glucides: 0,
+        lipides: 0
+    };
 
-    /*
-     * On vide les listes
-     */
+
     for (const repas in listes) {
         listes[repas].innerHTML = "";
     }
 
-    /*
-     * On affiche les consommations
-     */
+
     consommations.forEach(function (consommation) {
 
         const repas =
             consommation.repas;
 
-        const quantite =
-            consommation.quantite;
-
-        const calories =
-            consommation.kcal *
-            (
-                quantite /
-                consommation.quantite_reference
-            );
-
         if (!listes[repas]) {
             return;
         }
+
+        const coefficient =
+            consommation.quantite /
+            consommation.quantite_reference;
+
+        const kcal =
+            consommation.kcal *
+            coefficient;
+
+        const proteines =
+            consommation.proteines *
+            coefficient;
+
+        const glucides =
+            consommation.glucides *
+            coefficient;
+
+        const lipides =
+            consommation.lipides *
+            coefficient;
+
+
+        totaux[repas].kcal += kcal;
+        totaux[repas].proteines += proteines;
+        totaux[repas].glucides += glucides;
+        totaux[repas].lipides += lipides;
+
+        totalJournee.kcal += kcal;
+        totalJournee.proteines += proteines;
+        totalJournee.glucides += glucides;
+        totalJournee.lipides += lipides;
+
+
+        let valeur = 0;
+        let unite = "";
+
+        if (nutrimentSelectionne === "kcal") {
+            valeur = kcal;
+            unite = "kcal";
+        }
+
+        if (nutrimentSelectionne === "proteines") {
+            valeur = proteines;
+            unite = "g";
+        }
+
+        if (nutrimentSelectionne === "glucides") {
+            valeur = glucides;
+            unite = "g";
+        }
+
+        if (nutrimentSelectionne === "lipides") {
+            valeur = lipides;
+            unite = "g";
+        }
+
 
         const element =
             document.createElement("div");
@@ -213,21 +284,25 @@ function afficherRepas() {
         element.className =
             "d-flex justify-content-between align-items-center mb-2";
 
-        element.innerHTML = `
-            <div>
-                <div class="fw-semibold">
-                    ${consommation.nom}
-                </div>
 
-                <small>
-                    ${quantite} ${consommation.unite_reference}
-                </small>
+        element.innerHTML = `
+            <div class="d-flex align-items-center">
+
+                <span class="me-2">
+                    ${consommation.quantite}
+                    ${consommation.unite_reference}
+                </span>
+
+                <span class="fw-semibold">
+                    ${consommation.nom}
+                </span>
+
             </div>
 
             <div class="d-flex align-items-center gap-2">
 
                 <span class="fw-semibold">
-                    ${Math.round(calories)} kcal
+                    ${valeur.toFixed(1)} ${unite}
                 </span>
 
                 <button
@@ -240,8 +315,10 @@ function afficherRepas() {
             </div>
         `;
 
+
         const boutonSupprimer =
             element.querySelector("button");
+
 
         boutonSupprimer.addEventListener(
             "click",
@@ -262,11 +339,8 @@ function afficherRepas() {
                     );
 
                 if (resultat) {
-
                     afficherRepas();
-
                 } else {
-
                     alert(
                         "Erreur lors de la suppression."
                     );
@@ -274,16 +348,11 @@ function afficherRepas() {
             }
         );
 
+
         listes[repas].appendChild(element);
-
-        totaux[repas] += calories;
-
-        totalJournee += calories;
     });
 
-    /*
-     * Message si aucun aliment
-     */
+
     for (const repas in listes) {
 
         if (
@@ -298,69 +367,142 @@ function afficherRepas() {
         }
     }
 
-    /*
-     * Totaux par repas
-     */
-    const caloriesPetitDejeuner =
-        document.getElementById(
-            "calories-petitDejeuner"
-        );
+    afficherTotauxRepas(totaux);
+    afficherTotalJournee(totalJournee);
+}
 
-    const caloriesDejeuner =
-        document.getElementById(
-            "calories-dejeuner"
-        );
+function afficherTotauxRepas(totaux) {
 
-    const caloriesDiner =
-        document.getElementById(
-            "calories-diner"
-        );
+    const ids = {
+        petitDejeuner:
+            "calories-petitDejeuner",
 
-    const caloriesCollation =
-        document.getElementById(
+        dejeuner:
+            "calories-dejeuner",
+
+        diner:
+            "calories-diner",
+
+        collation:
             "calories-collation"
-        );
+    };
 
-    if (caloriesPetitDejeuner) {
-        caloriesPetitDejeuner.textContent =
-            Math.round(
-                totaux.petitDejeuner
-            ) + " kcal";
+    for (const repas in ids) {
+
+        const element =
+            document.getElementById(
+                ids[repas]
+            );
+
+        if (!element) {
+            continue;
+        }
+
+        let valeur = 0;
+        let unite = "kcal";
+
+        if (nutrimentSelectionne === "kcal") {
+            valeur = totaux[repas].kcal;
+        }
+
+        if (nutrimentSelectionne === "proteines") {
+            valeur = totaux[repas].proteines;
+            unite = "g";
+        }
+
+        if (nutrimentSelectionne === "glucides") {
+            valeur = totaux[repas].glucides;
+            unite = "g";
+        }
+
+        if (nutrimentSelectionne === "lipides") {
+            valeur = totaux[repas].lipides;
+            unite = "g";
+        }
+
+        element.textContent =
+            Math.round(valeur * 10) / 10 +
+            " " +
+            unite;
     }
+}
 
-    if (caloriesDejeuner) {
-        caloriesDejeuner.textContent =
-            Math.round(
-                totaux.dejeuner
-            ) + " kcal";
-    }
 
-    if (caloriesDiner) {
-        caloriesDiner.textContent =
-            Math.round(
-                totaux.diner
-            ) + " kcal";
-    }
+function afficherTotalJournee(total) {
 
-    if (caloriesCollation) {
-        caloriesCollation.textContent =
-            Math.round(
-                totaux.collation
-            ) + " kcal";
-    }
+    document.getElementById(
+        "total-kcal-journee"
+    ).textContent =
+        Math.round(total.kcal) +
+        " kcal";
 
-    /*
-     * Total de la journée
-     */
+    document.getElementById(
+        "total-proteines-journee"
+    ).textContent =
+        Math.round(total.proteines * 10) / 10 +
+        " g";
+
+    document.getElementById(
+        "total-glucides-journee"
+    ).textContent =
+        Math.round(total.glucides * 10) / 10 +
+        " g";
+
+    document.getElementById(
+        "total-lipides-journee"
+    ).textContent =
+        Math.round(total.lipides * 10) / 10 +
+        " g";
+
+
+    // ===============================
+    // TOTAL DU REPAS AFFICHÉ EN BAS
+    // ===============================
+
     const totalCalories =
         document.getElementById(
             "total-calories"
         );
 
-    if (totalCalories) {
-        totalCalories.textContent =
-            Math.round(totalJournee);
+    if (!totalCalories) {
+        return;
     }
+
+    let valeur = 0;
+    let unite = "kcal";
+
+    if (nutrimentSelectionne === "kcal") {
+
+        valeur = total.kcal;
+        unite = "kcal";
+
+    }
+
+    if (nutrimentSelectionne === "proteines") {
+
+        valeur = total.proteines;
+        unite = "g";
+
+    }
+
+    if (nutrimentSelectionne === "glucides") {
+
+        valeur = total.glucides;
+        unite = "g";
+
+    }
+
+    if (nutrimentSelectionne === "lipides") {
+
+        valeur = total.lipides;
+        unite = "g";
+
+    }
+
+    totalCalories.textContent =
+        Math.round(valeur * 10) / 10 +
+        " " +
+        unite;
 }
 
 function sauvegarderJournee() {
@@ -768,6 +910,81 @@ function calculerQuantiteAliment() {
     ).textContent =
         lipides.toFixed(1) + " g";
 }
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const boutons = {
+            kcal:
+                document.getElementById(
+                    "selection-kcal"
+                ),
+
+            proteines:
+                document.getElementById(
+                    "selection-proteines"
+                ),
+
+            glucides:
+                document.getElementById(
+                    "selection-glucides"
+                ),
+
+            lipides:
+                document.getElementById(
+                    "selection-lipides"
+                )
+        };
+
+
+        for (const nutriment in boutons) {
+
+            if (!boutons[nutriment]) {
+                continue;
+            }
+
+            boutons[nutriment].addEventListener(
+                "click",
+                function () {
+
+                    nutrimentSelectionne =
+                        nutriment;
+
+
+                    for (
+                        const autre in boutons
+                    ) {
+
+                        boutons[autre]
+                            .classList.remove(
+                                "btn-primary"
+                            );
+
+                        boutons[autre]
+                            .classList.add(
+                                "btn-outline-primary"
+                            );
+                    }
+
+
+                    boutons[nutriment]
+                        .classList.remove(
+                            "btn-outline-primary"
+                        );
+
+                    boutons[nutriment]
+                        .classList.add(
+                            "btn-primary"
+                        );
+
+
+                    afficherRepas();
+                }
+            );
+        }
+    }
+);
 
 document.addEventListener(
     "DOMContentLoaded",
