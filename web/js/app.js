@@ -224,12 +224,55 @@ function afficherRepas() {
                 </small>
             </div>
 
-            <div class="text-end">
+            <div class="d-flex align-items-center gap-2">
+
                 <span class="fw-semibold">
                     ${Math.round(calories)} kcal
                 </span>
+
+                <button
+                    type="button"
+                    class="btn btn-sm btn-outline-danger"
+                >
+                    Supprimer
+                </button>
+
             </div>
         `;
+
+        const boutonSupprimer =
+            element.querySelector("button");
+
+        boutonSupprimer.addEventListener(
+            "click",
+            function () {
+
+                const confirmation =
+                    confirm(
+                        "Supprimer cet aliment du repas ?"
+                    );
+
+                if (!confirmation) {
+                    return;
+                }
+
+                const resultat =
+                    Android.supprimerConsommation(
+                        consommation.id
+                    );
+
+                if (resultat) {
+
+                    afficherRepas();
+
+                } else {
+
+                    alert(
+                        "Erreur lors de la suppression."
+                    );
+                }
+            }
+        );
 
         listes[repas].appendChild(element);
 

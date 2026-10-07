@@ -265,4 +265,21 @@ class AndroidBridge(
 
         return resultat.toString()
     }
+
+    @JavascriptInterface
+    fun supprimerConsommation(id: Int): Boolean {
+
+        val databaseHelper = HealthAndFitDatabase(context)
+        val db = databaseHelper.writableDatabase
+
+        val resultat = db.delete(
+            "consommations",
+            "id = ?",
+            arrayOf(id.toString())
+        )
+
+        db.close()
+
+        return resultat > 0
+    }
 }
