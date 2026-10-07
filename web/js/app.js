@@ -131,100 +131,193 @@ if (boutonAjouter) {
 // ===============================
 
 function afficherRepas() {
-    // Ne rien faire si la page n'est pas la page Alimentation
+
     if (!document.getElementById("liste-petitDejeuner")) {
         return;
     }
-    // Les 4 zones HTML
+
+    const date =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+    const resultat =
+        Android.obtenirConsommations(date);
+
+    const consommations =
+        JSON.parse(resultat);
+
     const listes = {
-        petitDejeuner: document.getElementById("liste-petitDejeuner"),
-        dejeuner: document.getElementById("liste-dejeuner"),
-        diner: document.getElementById("liste-diner"),
-        collation: document.getElementById("liste-collation")
+        petitDejeuner:
+            document.getElementById(
+                "liste-petitDejeuner"
+            ),
+
+        dejeuner:
+            document.getElementById(
+                "liste-dejeuner"
+            ),
+
+        diner:
+            document.getElementById(
+                "liste-diner"
+            ),
+
+        collation:
+            document.getElementById(
+                "liste-collation"
+            )
     };
 
+    const totaux = {
+        petitDejeuner: 0,
+        dejeuner: 0,
+        diner: 0,
+        collation: 0
+    };
 
-    // Total de la journée
     let totalJournee = 0;
 
-
-    // Parcours des 4 repas
-    for (const repas in journee.repas) {
-
-        const aliments = journee.repas[repas].aliments;
-
-        const liste = listes[repas];
-
-
-        // Vider l'affichage
-        liste.innerHTML = "";
-
-
-        // Parcours des aliments
-        aliments.forEach(function (aliment, index) {
-
-            // Création de la ligne
-            const element = document.createElement("p");
-
-
-            // Texte de l'aliment
-            element.textContent =
-                aliment.nom +
-                " - " +
-                aliment.quantite +
-                " g - " +
-                Math.round(aliment.calories) +
-                " kcal";
-
-
-            // Création du bouton
-            const boutonSupprimer =
-                document.createElement("button");
-
-            boutonSupprimer.textContent = "Supprimer";
-
-
-            // Action du bouton
-            boutonSupprimer.addEventListener("click", function () {
-
-                aliments.splice(index, 1);
-
-                sauvegarderJournee();
-
-                afficherRepas();
-
-            });
-
-
-            // Ajouter le bouton à la ligne
-            element.appendChild(boutonSupprimer);
-
-
-            // Ajouter la ligne à la page
-            liste.appendChild(element);
-
-
-            // Ajouter les calories au total
-            totalJournee += aliment.calories;
-
-        });
-
-
-        // Aucun aliment
-        if (aliments.length === 0) {
-
-            liste.innerHTML =
-                "<p>Aucun aliment enregistré</p>";
-
-        }
-
+    /*
+     * On vide les listes
+     */
+    for (const repas in listes) {
+        listes[repas].innerHTML = "";
     }
 
+    /*
+     * On affiche les consommations
+     */
+    consommations.forEach(function (consommation) {
 
-    // Affichage du total
-    document.getElementById("total-calories").textContent =
-        Math.round(totalJournee);
+        const repas =
+            consommation.repas;
 
+        const quantite =
+            consommation.quantite;
+
+        const calories =
+            consommation.kcal *
+            (
+                quantite /
+                consommation.quantite_reference
+            );
+
+        if (!listes[repas]) {
+            return;
+        }
+
+        const element =
+            document.createElement("div");
+
+        element.className =
+            "d-flex justify-content-between align-items-center mb-2";
+
+        element.innerHTML = `
+            <div>
+                <div class="fw-semibold">
+                    ${consommation.nom}
+                </div>
+
+                <small>
+                    ${quantite} ${consommation.unite_reference}
+                </small>
+            </div>
+
+            <div class="text-end">
+                <span class="fw-semibold">
+                    ${Math.round(calories)} kcal
+                </span>
+            </div>
+        `;
+
+        listes[repas].appendChild(element);
+
+        totaux[repas] += calories;
+
+        totalJournee += calories;
+    });
+
+    /*
+     * Message si aucun aliment
+     */
+    for (const repas in listes) {
+
+        if (
+            listes[repas].children.length === 0
+        ) {
+
+            listes[repas].innerHTML = `
+                <p class="text-secondary mb-0">
+                    Aucun aliment enregistré
+                </p>
+            `;
+        }
+    }
+
+    /*
+     * Totaux par repas
+     */
+    const caloriesPetitDejeuner =
+        document.getElementById(
+            "calories-petitDejeuner"
+        );
+
+    const caloriesDejeuner =
+        document.getElementById(
+            "calories-dejeuner"
+        );
+
+    const caloriesDiner =
+        document.getElementById(
+            "calories-diner"
+        );
+
+    const caloriesCollation =
+        document.getElementById(
+            "calories-collation"
+        );
+
+    if (caloriesPetitDejeuner) {
+        caloriesPetitDejeuner.textContent =
+            Math.round(
+                totaux.petitDejeuner
+            ) + " kcal";
+    }
+
+    if (caloriesDejeuner) {
+        caloriesDejeuner.textContent =
+            Math.round(
+                totaux.dejeuner
+            ) + " kcal";
+    }
+
+    if (caloriesDiner) {
+        caloriesDiner.textContent =
+            Math.round(
+                totaux.diner
+            ) + " kcal";
+    }
+
+    if (caloriesCollation) {
+        caloriesCollation.textContent =
+            Math.round(
+                totaux.collation
+            ) + " kcal";
+    }
+
+    /*
+     * Total de la journée
+     */
+    const totalCalories =
+        document.getElementById(
+            "total-calories"
+        );
+
+    if (totalCalories) {
+        totalCalories.textContent =
+            Math.round(totalJournee);
+    }
 }
 
 function sauvegarderJournee() {
@@ -795,28 +888,6 @@ document.addEventListener(
                 }
             }
         );
-    }
-);
-
-function testerLectureConsommations() {
-
-    const date =
-        new Date()
-            .toISOString()
-            .split("T")[0];
-
-    const resultat =
-        Android.obtenirConsommations(date);
-
-    alert(resultat);
-}
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        testerLectureConsommations();
-
     }
 );
 
