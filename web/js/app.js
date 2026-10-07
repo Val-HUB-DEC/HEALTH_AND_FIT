@@ -671,6 +671,133 @@ document.addEventListener(
     }
 );
 
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        const boutonAjouter =
+            document.getElementById(
+                "ajouter-aliment-repas"
+            );
+
+        if (!boutonAjouter) {
+            return;
+        }
+
+        boutonAjouter.addEventListener(
+            "click",
+            function () {
+
+                const donnees =
+                    localStorage.getItem(
+                        "alimentSelectionne"
+                    );
+
+                if (!donnees) {
+                    return;
+                }
+
+                const aliment =
+                    JSON.parse(donnees);
+
+                const date =
+                    document.getElementById(
+                        "date-aliment"
+                    ).value;
+
+                const quantite =
+                    parseFloat(
+                        document.getElementById(
+                            "quantite-aliment"
+                        ).value
+                    );
+
+                let repas = "";
+
+                if (
+                    document.getElementById(
+                        "repas-petit-dejeuner"
+                    ).checked
+                ) {
+                    repas = "petitDejeuner";
+                }
+
+                if (
+                    document.getElementById(
+                        "repas-dejeuner"
+                    ).checked
+                ) {
+                    repas = "dejeuner";
+                }
+
+                if (
+                    document.getElementById(
+                        "repas-diner"
+                    ).checked
+                ) {
+                    repas = "diner";
+                }
+
+                if (
+                    document.getElementById(
+                        "repas-collation"
+                    ).checked
+                ) {
+                    repas = "collation";
+                }
+
+                if (!date) {
+                    alert(
+                        "Veuillez sélectionner une date."
+                    );
+                    return;
+                }
+
+                if (
+                    isNaN(quantite) ||
+                    quantite <= 0
+                ) {
+                    alert(
+                        "Veuillez saisir une quantité."
+                    );
+                    return;
+                }
+
+                if (!repas) {
+                    alert(
+                        "Veuillez sélectionner un repas."
+                    );
+                    return;
+                }
+
+                const resultat =
+                    Android.ajouterConsommation(
+                        date,
+                        repas,
+                        aliment.id,
+                        quantite
+                    );
+
+                if (resultat) {
+
+                    alert(
+                        "Aliment ajouté au repas."
+                    );
+
+                    window.location.href =
+                        "alimentation.html";
+
+                } else {
+
+                    alert(
+                        "Erreur lors de l'enregistrement."
+                    );
+                }
+            }
+        );
+    }
+);
+
 chargerJournee();
 
 afficherRepas();

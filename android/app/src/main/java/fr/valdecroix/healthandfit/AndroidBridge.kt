@@ -4,6 +4,7 @@ import android.content.Context
 import android.webkit.JavascriptInterface
 import org.json.JSONArray
 import org.json.JSONObject
+import android.content.ContentValues
 
 class AndroidBridge(
     private val context: Context
@@ -128,5 +129,35 @@ class AndroidBridge(
         db.close()
 
         return resultat.toString()
+    }
+
+    @JavascriptInterface
+    fun ajouterConsommation(
+        date: String,
+        repas: String,
+        alimentId: Int,
+        quantite: Double
+        ): Boolean {
+
+            val databaseHelper = HealthAndFitDatabase(context)
+            val db = databaseHelper.writableDatabase
+
+            val valeurs = ContentValues()
+
+            valeurs.put("date", date)
+            valeurs.put("repas", repas)
+            valeurs.put("aliment_id", alimentId)
+            valeurs.putNull("aliment_personnel_id")
+            valeurs.put("quantite", quantite)
+
+            val resultat = db.insert(
+                "consommations",
+                null,
+                valeurs
+            )
+
+            db.close()
+
+            return resultat != -1L
     }
 }
