@@ -52,6 +52,8 @@ class MainActivity : ComponentActivity() {
 
         setContentView(webView)
         DatabaseSeeder.insererAlimentsDeBase(this)
+        DataUpdater(this).mettreAJourDonnees()
+        CiqualImporter(this).importer()
         telechargerSite(webView)
 
 

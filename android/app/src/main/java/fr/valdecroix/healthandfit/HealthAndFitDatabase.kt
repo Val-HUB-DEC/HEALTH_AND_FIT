@@ -9,7 +9,7 @@ class HealthAndFitDatabase(context: Context) :
         context,
         "health_and_fit.db",
         null,
-        1
+        2
     ) {
 
     override fun onCreate(db: SQLiteDatabase) {
@@ -22,6 +22,7 @@ class HealthAndFitDatabase(context: Context) :
             """
             CREATE TABLE aliments (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
+                code_ciqual TEXT UNIQUE,
                 nom TEXT NOT NULL,
                 categorie TEXT NOT NULL,
                 unite_reference TEXT NOT NULL,
@@ -143,6 +144,20 @@ class HealthAndFitDatabase(context: Context) :
             )
             """.trimIndent()
         )
+
+
+        // ==========================================
+        // VERSION DES DONNÉES CIQUAL
+        // ==========================================
+
+        db.execSQL(
+            """
+            CREATE TABLE version_data (
+                id INTEGER PRIMARY KEY,
+                version TEXT NOT NULL
+            )
+            """.trimIndent()
+        )
     }
 
 
@@ -152,9 +167,30 @@ class HealthAndFitDatabase(context: Context) :
         nouvelleVersion: Int
     ) {
 
-        // Pour l'instant, la base n'a qu'une seule version.
-        // Nous ajouterons ici les migrations lorsque
-        // la structure évoluera.
+        // ==========================================
+        // VERSION 1 → VERSION 2
+        // ==========================================
 
+        if (ancienneVersion < 2) {
+
+            // Ajout du code Ciqual aux aliments
+            db.execSQL(
+                """
+                ALTER TABLE aliments
+                ADD COLUMN code_ciqual TEXT
+                """.trimIndent()
+            )
+
+            // Table permettant de mémoriser
+            // la version des données Ciqual installée
+            db.execSQL(
+                """
+                CREATE TABLE version_data (
+                    id INTEGER PRIMARY KEY,
+                    version TEXT NOT NULL
+                )
+                """.trimIndent()
+            )
+        }
     }
 }
